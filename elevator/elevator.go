@@ -1,4 +1,4 @@
-package elevator
+package main
 
 import "sync"
 
@@ -25,7 +25,7 @@ func MakeECB(floors int, p *Pannel) ECB {
 	e.Target = make([]bool, floors)
 	e.internalButton = make([]bool, floors)
 	e.pannel = p
-	e.topFloor = floors - 1
+	e.topFloor = floors
 	e.clockCh = make(chan int)
 	e.signalCh = make(chan int)
 	return e
@@ -34,15 +34,15 @@ func MakeECB(floors int, p *Pannel) ECB {
 func (e *ECB) insertTarget(f int) {
 	e.mu.Lock()
 	defer e.mu.Unlock()
-	e.Target[f-1] = true
+	e.Target[f] = true
 }
 
 func (e *ECB) insertInternalTarget(f int) {
 	e.mu.Lock()
 	//defer e.singalCh <- 0
 	//defer e.mu.Unlock()
-	e.Target[f-1] = true
-	e.internalButton[f-1] = true
+	e.Target[f] = true
+	e.internalButton[f] = true
 
 	e.mu.Unlock()
 	e.signalCh <- 0
@@ -78,7 +78,7 @@ func (e *ECB) distanceCal(dir int, floor int) int {
 		return a
 	}
 	upperBound := 0
-	lowerBound := e.topFloor
+	lowerBound := e.topFloor - 1
 	for i, v := range e.Target {
 		if v {
 			if i > upperBound {
@@ -136,7 +136,7 @@ func (e *ECB) stateForwardRun() {
 		switch {
 		case e.Target[e.floor]:
 			e.State = Stay1
-		case e.floor == e.topFloor:
+		case e.floor == e.topFloor-1:
 			e.State = Stay3
 		}
 	case Downward:
@@ -191,7 +191,9 @@ func (e *ECB) stateToStay2() {
 	dir := e.Dir
 	f := e.floor
 	e.mu.Unlock()
-	e.pannel.setTarget(dir, f, false)
+	if !e.pannel.setTarget(dir, f, false) {
+		e.pannel.setTarget(reverseDir(dir), f, false)
+	}
 	e.mu.Lock()
 
 }
@@ -209,4 +211,14 @@ func (e *ECB) targetCount() (int, int) {
 		}
 	}
 	return upCount, downCount
+}
+
+func reverseDir(dir int) int {
+	switch dir {
+	case Upward:
+		return Downward
+	case Downward:
+		return Upward
+	}
+	return Upward
 }

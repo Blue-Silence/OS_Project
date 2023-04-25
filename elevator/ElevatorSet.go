@@ -1,11 +1,11 @@
-package elevator
+package main
 
 import "sync"
 
 type ESet struct {
-	pannel    Pannel
-	es        []ECB
-	signalChs []chan int
+	pannel   Pannel
+	es       []ECB
+	clockChs []chan int
 	//elevatorNum int
 	topFloor int
 	mu       sync.Mutex
@@ -16,11 +16,11 @@ func MakeESet(floor int, elevatorNum int) ESet {
 	s.pannel = MakePannel(floor)
 	//s.elevatorNum = elevatorNum
 	s.topFloor = floor
-	s.signalChs = make([]chan int, 0)
+	s.clockChs = make([]chan int, 0)
 	s.es = make([]ECB, elevatorNum)
 	for i, _ := range s.es {
 		s.es[i] = MakeECB(floor, &s.pannel)
-		s.signalChs = append(s.signalChs, s.es[i].signalCh)
+		s.clockChs = append(s.clockChs, s.es[i].clockCh)
 	}
 	return s
 }

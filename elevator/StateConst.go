@@ -1,4 +1,4 @@
-package elevator
+package main
 
 const (
 	Upward   int = 0
