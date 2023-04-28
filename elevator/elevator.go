@@ -1,6 +1,9 @@
 package main
 
-import "sync"
+import (
+	"log"
+	"sync"
+)
 
 type ECB struct {
 	State int
@@ -77,16 +80,18 @@ func (e *ECB) distanceCal(dir int, floor int) int {
 		}
 		return a
 	}
+	targetCount := 0
 	upperBound := 0
 	lowerBound := e.topFloor - 1
 	for i, v := range e.Target {
 		if v {
+			targetCount++
 			if i > upperBound {
 				upperBound = i
 			}
-		}
-		if i < lowerBound {
-			lowerBound = i
+			if i < lowerBound {
+				lowerBound = i
+			}
 		}
 	}
 
@@ -105,7 +110,7 @@ func (e *ECB) distanceCal(dir int, floor int) int {
 		}
 	}
 
-	return r
+	return r + targetCount*2 // Take into account the current load
 
 }
 
@@ -148,6 +153,7 @@ func (e *ECB) stateForwardRun() {
 			e.State = Stay3
 		}
 	}
+	log.Println("e.floor:", e.floor, " e.Target:", e.Target)
 }
 
 func (e *ECB) stateForwardStay1() {
@@ -191,9 +197,13 @@ func (e *ECB) stateToStay2() {
 	dir := e.Dir
 	f := e.floor
 	e.mu.Unlock()
-	if !e.pannel.setTarget(dir, f, false) {
-		e.pannel.setTarget(reverseDir(dir), f, false)
-	}
+	log.Println("HELLO!")
+	log.Println("dir:", dir, "  f:", f)
+	e.pannel.clearTarget(dir, f)
+	//if !e.pannel.setTarget(dir, f, false) {
+	//	log.Println("OKKKKK")
+	//	e.pannel.setTarget(reverseDir(dir), f, false)
+	//}
 	e.mu.Lock()
 
 }
@@ -220,5 +230,6 @@ func reverseDir(dir int) int {
 	case Downward:
 		return Upward
 	}
+	log.Fatal("Warning!")
 	return Upward
 }

@@ -22,14 +22,33 @@ func MakePannel(floor int) Pannel {
 func (p *Pannel) setTarget(Dir int, floor int, v bool) bool {
 	var r bool
 	p.mu.Lock()
-	r = p.upTarget[floor]
+
 	switch Dir {
 	case Upward:
+		r = p.upTarget[floor]
 		p.upTarget[floor] = v
 	case Downward:
+		r = p.downTarget[floor]
 		p.downTarget[floor] = v
 	}
 	p.mu.Unlock()
 	p.signalCh <- 0
 	return r
+}
+
+func (p *Pannel) clearTarget(Dir int, floor int) {
+
+	p.mu.Lock()
+
+	switch {
+	case Dir == Upward && p.upTarget[floor]:
+		p.upTarget[floor] = false
+	case Dir == Downward && p.downTarget[floor]:
+		p.downTarget[floor] = false
+	default:
+		p.upTarget[floor] = false
+		p.downTarget[floor] = false
+	}
+	p.mu.Unlock()
+	p.signalCh <- 0
 }

@@ -12,7 +12,7 @@ func main() {
 	myApp := app.New()
 	myWindow := myApp.NewWindow("Container")
 
-	s := MakeESet(10, 5)
+	s := MakeESet(20, 5)
 
 	content2 := container.New(layout.NewHBoxLayout(), guiESet(&s))
 	myWindow.SetContent(content2)
