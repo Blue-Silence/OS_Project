@@ -28,7 +28,7 @@ func MakeESet(floor int, elevatorNum int) ESet {
 func (s *ESet) requestElevator(dir int, t int) {
 	s.mu.Lock()
 	defer s.mu.Unlock()
-	s.pannel.setTarget(dir, t, true)
+	b := s.pannel.setTarget(dir, t, true)
 	//var dis [s.elevatorNum]int
 	minDis := s.topFloor * 10
 	chosenE := &s.es[0]
@@ -40,6 +40,8 @@ func (s *ESet) requestElevator(dir int, t int) {
 		}
 	}
 
-	chosenE.insertTarget(t)
+	if !b {
+		chosenE.insertTarget(t)
+	}
 
 }

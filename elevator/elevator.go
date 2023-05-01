@@ -11,7 +11,7 @@ type ECB struct {
 	floor int
 	//upTarget int[]
 	//downTarget int[]
-	Target         []bool
+	Target         []int
 	internalButton []bool
 	mu             sync.Mutex
 	pannel         *Pannel
@@ -25,7 +25,7 @@ func MakeECB(floors int, p *Pannel) ECB {
 	e.State = Idle
 	e.floor = 0
 	e.Dir = Upward
-	e.Target = make([]bool, floors)
+	e.Target = make([]int, floors)
 	e.internalButton = make([]bool, floors)
 	e.pannel = p
 	e.topFloor = floors
@@ -37,14 +37,16 @@ func MakeECB(floors int, p *Pannel) ECB {
 func (e *ECB) insertTarget(f int) {
 	e.mu.Lock()
 	defer e.mu.Unlock()
-	e.Target[f] = true
+	e.Target[f]++
 }
 
 func (e *ECB) insertInternalTarget(f int) {
 	e.mu.Lock()
 	//defer e.singalCh <- 0
 	//defer e.mu.Unlock()
-	e.Target[f] = true
+	if e.Target[f] == 0 {
+		e.Target[f]++
+	}
 	e.internalButton[f] = true
 
 	e.mu.Unlock()
@@ -84,7 +86,7 @@ func (e *ECB) distanceCal(dir int, floor int) int {
 	upperBound := 0
 	lowerBound := e.topFloor - 1
 	for i, v := range e.Target {
-		if v {
+		if v > 0 {
 			targetCount++
 			if i > upperBound {
 				upperBound = i
@@ -120,8 +122,8 @@ func (e *ECB) stateForwardIdle() {
 	upCount, downCount := e.targetCount()
 
 	switch {
-	case e.Target[e.floor] == true:
-		e.Target[e.floor] = false
+	case e.Target[e.floor] > 0:
+		e.Target[e.floor]--
 		e.internalButton[e.floor] = false
 		e.State = Stay1
 	case upCount+downCount == 0:
@@ -139,7 +141,7 @@ func (e *ECB) stateForwardRun() {
 	case Upward:
 		e.floor++
 		switch {
-		case e.Target[e.floor]:
+		case e.Target[e.floor] > 0:
 			e.State = Stay1
 		case e.floor == e.topFloor-1:
 			e.State = Stay3
@@ -147,7 +149,7 @@ func (e *ECB) stateForwardRun() {
 	case Downward:
 		e.floor--
 		switch {
-		case e.Target[e.floor]:
+		case e.Target[e.floor] > 0:
 			e.State = Stay1
 		case e.floor == 0:
 			e.State = Stay3
@@ -162,19 +164,22 @@ func (e *ECB) stateForwardStay1() {
 
 func (e *ECB) stateForwardStay2() {
 	switch {
-	case e.Target[e.floor]:
+	case e.Target[e.floor] > 0:
 		e.stateToStay2()
+		//e.Target[e.floor]--
 	default:
 		e.State = Stay3
+		//e.Target[e.floor]--
 	}
-	e.Target[e.floor] = false
+	//e.Target[e.floor]--
 	e.internalButton[e.floor] = false
 }
 
 func (e *ECB) stateForwardStay3() {
 	switch {
-	case e.Target[e.floor]:
+	case e.Target[e.floor] > 0:
 		e.stateToStay2()
+		//e.Target[e.floor]--
 	default:
 		upCount, downCount := e.targetCount()
 		switch {
@@ -185,13 +190,16 @@ func (e *ECB) stateForwardStay3() {
 			e.stateForwardIdle()
 		}
 	}
-	e.Target[e.floor] = false
+	//e.Target[e.floor]--
 	e.internalButton[e.floor] = false
 }
 
 func (e *ECB) stateToStay2() {
 	e.State = Stay2
-	e.Target[e.floor] = false
+	if e.Target[e.floor] > 0 {
+		e.Target[e.floor]--
+	}
+	//e.Target[e.floor]--
 	e.internalButton[e.floor] = false
 	//And also do something to clear the external button. TO BE DONE.
 	dir := e.Dir
@@ -213,7 +221,7 @@ func (e *ECB) targetCount() (int, int) {
 	downCount := 0
 	for i, v := range e.Target {
 		switch {
-		case !v:
+		case v == 0:
 		case i > e.floor:
 			upCount++
 		case i < e.floor:
