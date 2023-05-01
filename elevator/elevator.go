@@ -134,6 +134,7 @@ func (e *ECB) stateForwardIdle() {
 		e.State = Run
 		e.Dir = Downward
 	}
+	log.Println("Idle")
 }
 
 func (e *ECB) stateForwardRun() {
@@ -240,4 +241,16 @@ func reverseDir(dir int) int {
 	}
 	log.Fatal("Warning!")
 	return Upward
+}
+
+func (e *ECB) doorOpen() {
+	e.mu.Lock()
+	switch e.State {
+	case Stay3:
+		e.State = Stay1
+	case Idle:
+		e.State = Stay1
+	}
+	e.mu.Unlock()
+	e.signalCh <- 0
 }
