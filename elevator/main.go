@@ -12,7 +12,7 @@ var i int = 1
 func main() {
 	myApp := app.New()
 	myApp.Settings().SetTheme(theme.LightTheme())
-	myWindow := myApp.NewWindow("Container")
+	myWindow := myApp.NewWindow("Elevator Sim")
 
 	s := MakeESet(20, 5)
 

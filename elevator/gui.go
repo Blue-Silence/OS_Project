@@ -15,6 +15,7 @@ import (
 
 var green color.NRGBA = color.NRGBA{R: 0, G: 180, B: 0, A: 255}
 var gray color.NRGBA = color.NRGBA{R: 160, G: 160, B: 160, A: 255}
+var orange color.NRGBA = color.NRGBA{R: 225, G: 128, B: 0, A: 255}
 
 func guiESet(s *ESet) *fyne.Container {
 	go func() {
@@ -88,7 +89,7 @@ func guiE(e *ECB) *fyne.Container {
 				if e.internalButton[i] {
 					//r, _ := fyne.LoadResourceFromPath("./Resource/2.png")
 					//bs[e.topFloor-1-i].SetText(fmt.Sprintf("Comming:%v!", i+1))
-					bcs[e.topFloor-1-i].FillColor = (green)
+					bcs[e.topFloor-1-i].FillColor = (orange)
 				} else {
 					bs[e.topFloor-1-i].SetText(fmt.Sprintf("%v", i+1))
 					bcs[e.topFloor-1-i].FillColor = (gray)
@@ -111,9 +112,9 @@ func guiE(e *ECB) *fyne.Container {
 		}
 	}()
 
-	//Screen := container.New(layout.NewMaxLayout(), canvas.NewRectangle(color.White), container.New(layout.NewHBoxLayout(), currentFloor, currentState))
 	Screen := container.New(layout.NewHBoxLayout(), currentFloor, currentState)
-	//Screen := container.New(layout.NewGridLayout(2), currentFloor, currentState)
+	//Screen := container.New(layout.NewVBoxLayout(), currentFloor, currentState)
+
 	open := widget.NewButton("", func() {
 		e.doorOpen()
 	})
@@ -129,6 +130,9 @@ func guiE(e *ECB) *fyne.Container {
 	doorP := container.New(layout.NewGridLayout(2), open, close)
 
 	buttons = append(buttons, Screen, doorP)
+	//buttons = append(buttons, doorP)
+	//buttons = append([]fyne.CanvasObject{Screen}, buttons...)
+
 	//buttons = append(buttons, Screen, open, close)
 
 	return container.New(layout.NewVBoxLayout(), buttons...)
@@ -162,8 +166,9 @@ func guiPannel(s *ESet) *fyne.Container {
 		downR := canvas.NewRectangle(color.White)
 		downs = append(downs, downR)
 		//tag := container.New(layout.NewMaxLayout(), canvas.NewRectangle(color.White), canvas.NewText(fmt.Sprintf("%3v", i), green))
-		tag := canvas.NewText(fmt.Sprintf("%3v", i), green)
+		tag := canvas.NewText(fmt.Sprintf("%3v", i), color.Black)
 		tag.TextStyle = fyne.TextStyle{Monospace: true}
+		tag.TextSize = 20.0
 		buttons = append(buttons, container.New(layout.NewHBoxLayout(), tag, container.New(layout.NewMaxLayout(), upR, up), container.New(layout.NewMaxLayout(), downR, down)))
 	}
 
