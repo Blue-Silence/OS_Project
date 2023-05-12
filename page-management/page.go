@@ -21,32 +21,38 @@ type Page struct {
 }
 
 type GlobalState struct {
-	physicalPs    []*Page
-	pageSet       []Page
-	reqCounter    int
-	missCounter   int
-	replacePolicy int
-	mu            sync.Mutex
-	signalCh      chan ReqMsg
+	physicalPs  []*Page
+	pageSet     []Page
+	reqCounter  int
+	missCounter int
+	//replacePolicy int
+	mu       sync.Mutex
+	signalCh chan ReqMsg
 }
 
 type ReqMsg struct {
-	PN            int
-	VN            int
-	reqAddress    int
-	currentPolicy int
-	isReplace     bool
-	isHit         bool
-	isReset       bool
+	PN         int
+	VN         int
+	reqAddress int
+	//currentPolicy int
+	isReplace   bool
+	isHit       bool
+	isReset     bool
+	missCounter int
+	reqCounter  int
 }
 
-func (s *GlobalState) reqAdderss(addr int) {
+func (s *GlobalState) reqAddress(addr int, replacePolicy int) bool {
 	s.mu.Lock()
+	//log.Println("Hello!")
+	//defer log.Println("There~")
 	vn := addr / PAGE_SIZE
 
-	msg := ReqMsg{VN: vn, reqAddress: addr, currentPolicy: s.replacePolicy}
+	msg := ReqMsg{VN: vn, reqAddress: addr}
 
 	s.reqCounter++
+	msg.reqCounter = s.reqCounter
+	msg.missCounter = s.missCounter
 
 	for _, p := range s.physicalPs {
 		if p != nil {
@@ -63,12 +69,12 @@ func (s *GlobalState) reqAdderss(addr int) {
 			msg.isHit = true
 			s.mu.Unlock()
 			s.signalCh <- msg
-			return
+			return true
 		}
 	} // Hit
 
 	s.missCounter++
-
+	msg.missCounter = s.missCounter
 	for a, p := range s.physicalPs {
 		if p == nil {
 			s.physicalPs[a] = &s.pageSet[vn]
@@ -79,12 +85,12 @@ func (s *GlobalState) reqAdderss(addr int) {
 			msg.isHit = false
 			s.mu.Unlock()
 			s.signalCh <- msg
-			return
+			return false
 		}
 	} // Use empty PP
 
 	pn := 0
-	switch s.replacePolicy {
+	switch replacePolicy {
 	case FIFO:
 		pn = s.findPnFIFO()
 	case LRU:
@@ -101,14 +107,8 @@ func (s *GlobalState) reqAdderss(addr int) {
 	msg.isHit = false
 	s.mu.Unlock()
 	s.signalCh <- msg
-	return
+	return false
 
-}
-
-func (s *GlobalState) setPolicy(policy int) {
-	s.mu.Lock()
-	s.replacePolicy = policy
-	s.mu.Unlock()
 }
 
 func (s *GlobalState) reset(physicalPN int, virtualPN int, policy int) {
@@ -120,10 +120,11 @@ func (s *GlobalState) reset(physicalPN int, virtualPN int, policy int) {
 	}
 	s.reqCounter = 0
 	s.missCounter = 0
-	s.replacePolicy = policy
-	s.mu.Unlock()
+	oldCh := s.signalCh
 	s.signalCh = make(chan ReqMsg, 1024)
-	s.signalCh <- ReqMsg{isReset: true}
+	s.mu.Unlock()
+
+	oldCh <- ReqMsg{isReset: true}
 }
 
 func (s *GlobalState) findPnFIFO() int {
