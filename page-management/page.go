@@ -15,7 +15,7 @@ const (
 )
 
 type Page struct {
-	address   int
+	vn        int
 	lastUsed  int
 	lastEnter int
 }
@@ -32,17 +32,21 @@ type GlobalState struct {
 
 type ReqMsg struct {
 	PN            int
-	reqAdderss    int
+	VN            int
+	reqAddress    int
 	currentPolicy int
 	isReplace     bool
 	isHit         bool
+	isReset       bool
 }
 
 func (s *GlobalState) reqAdderss(addr int) {
 	s.mu.Lock()
 	vn := addr / PAGE_SIZE
 
-	msg := ReqMsg{reqAdderss: addr, currentPolicy: s.replacePolicy}
+	msg := ReqMsg{VN: vn, reqAddress: addr, currentPolicy: s.replacePolicy}
+
+	s.reqCounter++
 
 	for _, p := range s.physicalPs {
 		if p != nil {
@@ -52,7 +56,7 @@ func (s *GlobalState) reqAdderss(addr int) {
 	}
 
 	for a, p := range s.physicalPs {
-		if p != nil && p.address == vn {
+		if p != nil && p.vn == vn {
 			p.lastUsed = 0
 			msg.PN = a
 			msg.isReplace = false
@@ -62,6 +66,8 @@ func (s *GlobalState) reqAdderss(addr int) {
 			return
 		}
 	} // Hit
+
+	s.missCounter++
 
 	for a, p := range s.physicalPs {
 		if p == nil {
@@ -97,6 +103,27 @@ func (s *GlobalState) reqAdderss(addr int) {
 	s.signalCh <- msg
 	return
 
+}
+
+func (s *GlobalState) setPolicy(policy int) {
+	s.mu.Lock()
+	s.replacePolicy = policy
+	s.mu.Unlock()
+}
+
+func (s *GlobalState) reset(physicalPN int, virtualPN int, policy int) {
+	s.mu.Lock()
+	s.physicalPs = make([]*Page, physicalPN)
+	s.pageSet = make([]Page, virtualPN)
+	for i, _ := range s.pageSet {
+		s.pageSet[i].vn = i
+	}
+	s.reqCounter = 0
+	s.missCounter = 0
+	s.replacePolicy = policy
+	s.mu.Unlock()
+	s.signalCh = make(chan ReqMsg, 1024)
+	s.signalCh <- ReqMsg{isReset: true}
 }
 
 func (s *GlobalState) findPnFIFO() int {
