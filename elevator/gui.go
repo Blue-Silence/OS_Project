@@ -19,13 +19,9 @@ var orange color.NRGBA = color.NRGBA{R: 225, G: 128, B: 0, A: 255}
 
 func guiESet(s *ESet) *fyne.Container {
 	go func() {
-		//log.Println("HELLO!!!")
-		//secCount := 0
 		for {
 			sec := 1
 			time.Sleep(time.Duration(sec) * time.Second)
-			//log.Println(secCount)
-			//secCount++
 			for _, v := range s.clockChs {
 				v <- 0
 			}
@@ -105,9 +101,7 @@ func guiE(e *ECB) *fyne.Container {
 	go func() {
 		log.Println("Ok.....")
 		for {
-			//log.Println("Before!")
 			_ = <-e.clockCh
-			//log.Println("State changing!")
 			e.stateForward()
 		}
 	}()
@@ -176,9 +170,9 @@ func guiPannel(s *ESet) *fyne.Container {
 		for {
 			_ = <-p.signalCh
 			p.mu.Lock()
-			log.Println("------------------------------------------------------------")
-			log.Println(p.upTarget)
-			log.Println(p.downTarget)
+			//log.Println("------------------------------------------------------------")
+			//log.Println(p.upTarget)
+			//log.Println(p.downTarget)
 			for i := 0; i < p.topFloor; i++ {
 				if p.upTarget[i] {
 					//r, _ := fyne.LoadResourceFromPath("./Resource/ButtonUp2.png")
@@ -199,10 +193,10 @@ func guiPannel(s *ESet) *fyne.Container {
 				downs[p.topFloor-1-i].Refresh()
 			}
 			p.mu.Unlock()
-			log.Println("############################################################")
-			log.Println(p.upTarget)
-			log.Println(p.downTarget)
-			log.Println("------------------------------------------------------------")
+			//log.Println("############################################################")
+			//log.Println(p.upTarget)
+			//log.Println(p.downTarget)
+			//log.Println("------------------------------------------------------------")
 
 		}
 	}()

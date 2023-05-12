@@ -42,8 +42,6 @@ func (e *ECB) insertTarget(f int) {
 
 func (e *ECB) insertInternalTarget(f int) {
 	e.mu.Lock()
-	//defer e.singalCh <- 0
-	//defer e.mu.Unlock()
 	if e.Target[f] == 0 {
 		e.Target[f]++
 	}
@@ -134,7 +132,7 @@ func (e *ECB) stateForwardIdle() {
 		e.State = Run
 		e.Dir = Downward
 	}
-	log.Println("Idle")
+	//log.Println("Idle")
 }
 
 func (e *ECB) stateForwardRun() {
@@ -156,7 +154,7 @@ func (e *ECB) stateForwardRun() {
 			e.State = Stay3
 		}
 	}
-	log.Println("e.floor:", e.floor, " e.Target:", e.Target)
+	//log.Println("e.floor:", e.floor, " e.Target:", e.Target)
 }
 
 func (e *ECB) stateForwardStay1() {
@@ -174,6 +172,7 @@ func (e *ECB) stateForwardStay2() {
 	}
 	//e.Target[e.floor]--
 	e.internalButton[e.floor] = false
+	log.Println("Elevator arrive :floor", e.floor)
 }
 
 func (e *ECB) stateForwardStay3() {
@@ -206,8 +205,8 @@ func (e *ECB) stateToStay2() {
 	dir := e.Dir
 	f := e.floor
 	e.mu.Unlock()
-	log.Println("HELLO!")
-	log.Println("dir:", dir, "  f:", f)
+	//log.Println("HELLO!")
+	//log.Println("dir:", dir, "  f:", f)
 	e.pannel.clearTarget(dir, f)
 	//if !e.pannel.setTarget(dir, f, false) {
 	//	log.Println("OKKKKK")
