@@ -245,6 +245,19 @@ func guiGlobalReqState(g *GlobalReqState) *fyne.Container {
 		g.msgCh <- fmt.Sprintf("Adding 50 access", g.lastAddr)
 	})
 
+	inputInstrNum := widget.NewEntry()
+	inputInstrNum.SetPlaceHolder("Enter instruction number.")
+	addN := widget.NewButton("Add", func() {
+		n := 0
+		fmt.Sscanf(inputInstrNum.Text, "%v", &n)
+		for i := 0; i < n; i++ {
+			a1()
+		}
+		g.msgCh <- fmt.Sprintf("Adding %v access", n)
+	})
+
+	instrInsertWin := container.New(layout.NewVBoxLayout(), add1, add50, container.New(layout.NewHBoxLayout(), inputInstrNum, addN))
+
 	setSEQ := widget.NewButton("SET SEQ", func() {
 		g.mu.Lock()
 		g.strategy = SEQ
@@ -252,14 +265,32 @@ func guiGlobalReqState(g *GlobalReqState) *fyne.Container {
 		g.msgCh <- fmt.Sprintf("Change stratgy to SEQ.")
 	})
 
-	setRAN := widget.NewButton("SET RANDOM", func() {
+	setRAN := widget.NewButton("          SET RANDOM          ", func() {
 		g.mu.Lock()
 		g.strategy = RANDOM
 		g.mu.Unlock()
 		g.msgCh <- fmt.Sprintf("Change stratgy to RANDOM.")
 	})
 
-	setFIFO := widget.NewButton("SET FIFO", func() {
+	inputAddr := widget.NewEntry()
+	inputAddr.SetPlaceHolder("Enter next instr addr.")
+	setAddr := widget.NewButton("Set", func() {
+		g.mu.Lock()
+		n := 0
+		fmt.Sscanf(inputAddr.Text, "%v", &n)
+		if n < 0 {
+			n = 0
+		} else {
+			n = n % (g.upperBound + 1)
+		}
+		g.lastAddr = n - 1
+		g.mu.Unlock()
+		g.msgCh <- fmt.Sprintf("Set next addr at %v", n)
+	})
+
+	addrWin := container.New(layout.NewVBoxLayout(), setSEQ, setRAN, container.New(layout.NewHBoxLayout(), inputAddr, setAddr))
+
+	setFIFO := widget.NewButton("          SET FIFO          ", func() {
 		g.mu.Lock()
 		g.policy = FIFO
 		g.mu.Unlock()
@@ -273,6 +304,8 @@ func guiGlobalReqState(g *GlobalReqState) *fyne.Container {
 		g.msgCh <- fmt.Sprintf("Change policy to LRU.")
 	})
 
+	replacePWin := container.New(layout.NewVBoxLayout(), setFIFO, setLRU)
+
 	reset := widget.NewButton("CLEAR", func() {
 		g.reset()
 		log.Println("OK?")
@@ -280,19 +313,37 @@ func guiGlobalReqState(g *GlobalReqState) *fyne.Container {
 		g.s.reset(g.ppageN, g.vpageN, FIFO)
 		g.mu.Unlock()
 		log.Println("OK!")
-		g.msgCh <- fmt.Sprintf("Clear")
+		g.msgCh <- fmt.Sprintf("          Clear          ")
 	})
+
+	inputTime := widget.NewEntry()
+	inputTime.SetPlaceHolder("Enter time interval (*100ms).")
+	setTime := widget.NewButton("Set", func() {
+		g.mu.Lock()
+		n := 0
+		fmt.Sscanf(inputTime.Text, "%v", &n)
+		if n < 0 {
+			n = 0
+		} else {
+		}
+		g.timeInterval = n
+		g.mu.Unlock()
+		g.msgCh <- fmt.Sprintf("Set time interval as %v*100ms", n)
+	})
+	gActWin := container.New(layout.NewVBoxLayout(), container.New(layout.NewHBoxLayout(), inputTime, setTime), reset)
 
 	ins := widget.NewLabel("                           \n")
 	outputWindow := container.NewVScroll(ins)
 	outputWindow.SetMinSize(fyne.Size{4, 400})
 	poS := widget.NewLabel("FIFO")
 	timeIS := widget.NewLabel("0")
+	nextAS := widget.NewLabel("0")
 	strategyS := widget.NewLabel("SEQ")
 	status := container.New(layout.NewVBoxLayout(),
 		container.New(layout.NewHBoxLayout(), widget.NewLabel("Policy:"), poS),
 		container.New(layout.NewHBoxLayout(), widget.NewLabel("Time Interval:"), timeIS),
-		container.New(layout.NewHBoxLayout(), widget.NewLabel("Next access address:"), strategyS),
+		container.New(layout.NewHBoxLayout(), widget.NewLabel("Next access address policy:"), strategyS),
+		container.New(layout.NewHBoxLayout(), widget.NewLabel("Next access address:"), nextAS),
 		outputWindow)
 
 	go func() {
@@ -317,6 +368,7 @@ func guiGlobalReqState(g *GlobalReqState) *fyne.Container {
 				poS.SetText("LRU")
 			}
 			timeIS.SetText(fmt.Sprint(g.timeInterval, "*100ms"))
+			nextAS.SetText(fmt.Sprint(g.lastAddr + 1))
 			outputWindow.ScrollToBottom()
 			g.mu.Unlock()
 		}
@@ -324,5 +376,5 @@ func guiGlobalReqState(g *GlobalReqState) *fyne.Container {
 
 	return container.New(layout.NewVBoxLayout(),
 		g.guiGlobalState(&g.s),
-		container.New(layout.NewHBoxLayout(), container.New(layout.NewVBoxLayout(), add1, add50, setSEQ, setRAN, setFIFO, setLRU, reset), status))
+		container.New(layout.NewHBoxLayout(), instrInsertWin, addrWin, replacePWin, gActWin, status))
 }
