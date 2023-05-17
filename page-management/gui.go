@@ -5,6 +5,7 @@ import (
 	"image/color"
 	"log"
 	"math/rand"
+	"strings"
 	"sync"
 	"time"
 
@@ -103,7 +104,11 @@ func (g *GlobalReqState) guiGlobalState(s *GlobalState) *fyne.Container {
 		pps = append(pps, pp)
 	}
 
-	ins := widget.NewLabel("\n\n\n")
+	ins := widget.NewLabel("                                                   \n")
+	ins.TextStyle = fyne.TextStyle{Monospace: true}
+	//ins2 := widget.NewTextGridFromString("                                                   \n")
+	//ins2.TextStyle = fyne.TextStyle{Monospace: true}
+
 	insR := canvas.NewRectangle(gray)
 	//ins.SetMinSize(fyne.Size{4, 400})
 	reqC := canvas.NewText("0", orange)
@@ -119,11 +124,13 @@ func (g *GlobalReqState) guiGlobalState(s *GlobalState) *fyne.Container {
 			s.mu.Unlock()
 			msg := <-signalCh
 			s.mu.Lock()
+			insText := ""
 			switch {
 
 			case msg.isReset:
-				ins.Text = fmt.Sprintf("%v\n", "Reset")
+				insText = fmt.Sprintf("%v\n", "Reset                                              ")
 				ins.Refresh()
+				//ins2.SetText("Reset                                                                ")
 				for a, _ := range s.physicalPs {
 					s.physicalPs[a] = nil
 					lastEnters[a].SetText("0")
@@ -134,8 +141,9 @@ func (g *GlobalReqState) guiGlobalState(s *GlobalState) *fyne.Container {
 					rects[a].Refresh()
 				}
 			case msg.isHit:
-				ins.Text = fmt.Sprintf("%v%v\n", ins.Text, fmt.Sprintf("Page hit for request at:%v", msg.reqAddress))
+				insText = fmt.Sprintf("%v%v\n", ins.Text, fmt.Sprintf("Page hit for request at:%v", msg.reqAddress))
 				ins.Refresh()
+				//ins2.SetText(fmt.Sprintf("%v%v\n", ins2.Text(), fmt.Sprintf("Page hit for request at:%v", msg.reqAddress)))
 				t := g.timeInterval
 				if t > 0 {
 					rects[msg.PN].FillColor = green
@@ -145,8 +153,9 @@ func (g *GlobalReqState) guiGlobalState(s *GlobalState) *fyne.Container {
 					rects[msg.PN].Refresh()
 				}
 			case msg.isReplace:
-				ins.Text = fmt.Sprintf("%v%v\n", ins.Text, fmt.Sprintf("Page miss for request at:%v, replacing in at:%v", msg.reqAddress, msg.PN))
+				insText = fmt.Sprintf("%v%v\n", ins.Text, fmt.Sprintf("Page miss for request at:%v, replacing in at:%v", msg.reqAddress, msg.PN))
 				ins.Refresh()
+				//ins2.SetText(fmt.Sprintf("%v%v\n", ins2.Text(), fmt.Sprintf("Page miss for request at:%v, replacing in at:%v", msg.reqAddress, msg.PN)))
 				t := g.timeInterval
 				if t > 0 {
 					rects[msg.PN].FillColor = orange
@@ -167,8 +176,9 @@ func (g *GlobalReqState) guiGlobalState(s *GlobalState) *fyne.Container {
 					rects[msg.PN].Refresh()
 				}
 			case !msg.isReplace && !msg.isHit:
-				ins.Text = fmt.Sprintf("%v%v\n", ins.Text, fmt.Sprintf("Page miss for request at:%v, switching in at:%v", msg.reqAddress, msg.PN))
-				ins.Refresh()
+				insText = fmt.Sprintf("%v%v\n", ins.Text, fmt.Sprintf("Page miss for request at:%v, switching in at:%v", msg.reqAddress, msg.PN))
+
+				//ins2.SetText(fmt.Sprintf("%v%v\n", ins2.Text(), fmt.Sprintf("Page miss for request at:%v, switching in at:%v", msg.reqAddress, msg.PN)))
 				t := g.timeInterval
 				if t > 0 {
 					rects[msg.PN].FillColor = orange
@@ -205,6 +215,17 @@ func (g *GlobalReqState) guiGlobalState(s *GlobalState) *fyne.Container {
 				}
 			}
 
+			split := strings.SplitAfter(insText, "\n")
+			if len(split) > 30 {
+				insText = ""
+				for _, s := range split[1:] {
+					insText = fmt.Sprintf("%v%v", insText, s)
+				}
+			}
+
+			ins.Text = insText
+			ins.Refresh()
+
 			missC.Text = (fmt.Sprint(msg.missCounter))
 			reqC.Text = (fmt.Sprint(msg.reqCounter))
 			missC.Refresh()
@@ -232,6 +253,8 @@ func guiGlobalReqState(g *GlobalReqState) *fyne.Container {
 		g.mu.Unlock()
 	}
 
+	addNote := widget.NewLabel("   Adding instruction   ")
+	addNote.TextStyle = fyne.TextStyle{Monospace: true}
 	add1 := widget.NewButton("Add 1 instr", func() {
 		a1()
 		g.msgCh <- fmt.Sprintf("Adding access to %v", g.lastAddr)
@@ -247,7 +270,7 @@ func guiGlobalReqState(g *GlobalReqState) *fyne.Container {
 
 	inputInstrNum := widget.NewEntry()
 	inputInstrNum.SetPlaceHolder("Enter instruction number.")
-	addN := widget.NewButton("Add", func() {
+	addN := widget.NewButton("      Add      ", func() {
 		n := 0
 		fmt.Sscanf(inputInstrNum.Text, "%v", &n)
 		for i := 0; i < n; i++ {
@@ -256,8 +279,10 @@ func guiGlobalReqState(g *GlobalReqState) *fyne.Container {
 		g.msgCh <- fmt.Sprintf("Adding %v access", n)
 	})
 
-	instrInsertWin := container.New(layout.NewVBoxLayout(), add1, add50, container.New(layout.NewHBoxLayout(), inputInstrNum, addN))
+	instrInsertWin := container.New(layout.NewVBoxLayout(), addNote, add1, add50, container.New(layout.NewVBoxLayout(), inputInstrNum, addN))
 
+	addrNote := widget.NewLabel("      Set insert address      ")
+	addrNote.TextStyle = fyne.TextStyle{Monospace: true}
 	setSEQ := widget.NewButton("SET SEQ", func() {
 		g.mu.Lock()
 		g.strategy = SEQ
@@ -288,8 +313,11 @@ func guiGlobalReqState(g *GlobalReqState) *fyne.Container {
 		g.msgCh <- fmt.Sprintf("Set next addr at %v", n)
 	})
 
-	addrWin := container.New(layout.NewVBoxLayout(), setSEQ, setRAN, container.New(layout.NewHBoxLayout(), inputAddr, setAddr))
+	container.NewWithoutLayout()
+	addrWin := container.New(layout.NewVBoxLayout(), addrNote, setSEQ, setRAN, container.New(layout.NewVBoxLayout(), inputAddr, setAddr))
 
+	policyNote := widget.NewLabel("      Set replace policy      ")
+	policyNote.TextStyle = fyne.TextStyle{Monospace: true}
 	setFIFO := widget.NewButton("          SET FIFO          ", func() {
 		g.mu.Lock()
 		g.policy = FIFO
@@ -303,9 +331,10 @@ func guiGlobalReqState(g *GlobalReqState) *fyne.Container {
 		g.mu.Unlock()
 		g.msgCh <- fmt.Sprintf("Change policy to LRU.")
 	})
+	replacePWin := container.New(layout.NewVBoxLayout(), policyNote, setFIFO, setLRU)
 
-	replacePWin := container.New(layout.NewVBoxLayout(), setFIFO, setLRU)
-
+	globalNote := widget.NewLabel("      Set motion speed and reset      ")
+	globalNote.TextStyle = fyne.TextStyle{Monospace: true}
 	reset := widget.NewButton("CLEAR", func() {
 		g.reset()
 		log.Println("OK?")
@@ -330,7 +359,7 @@ func guiGlobalReqState(g *GlobalReqState) *fyne.Container {
 		g.mu.Unlock()
 		g.msgCh <- fmt.Sprintf("Set time interval as %v*100ms", n)
 	})
-	gActWin := container.New(layout.NewVBoxLayout(), container.New(layout.NewHBoxLayout(), inputTime, setTime), reset)
+	gActWin := container.New(layout.NewVBoxLayout(), container.New(layout.NewVBoxLayout(), globalNote, inputTime, setTime), reset)
 
 	ins := widget.NewLabel("                           \n")
 	outputWindow := container.NewVScroll(ins)
