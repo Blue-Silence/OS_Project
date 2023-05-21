@@ -203,7 +203,7 @@ func (g *GlobalReqState) guiGlobalState(s *GlobalState) *fyne.Container {
 				log.Fatal("!!!!!")
 			}
 
-			for a, _ := range s.physicalPs {
+			for a, _ := range msg.physicalPs {
 				if s.physicalPs[a] != nil {
 
 					lastEnters[a].SetText(fmt.Sprint(s.physicalPs[a].lastEnter))

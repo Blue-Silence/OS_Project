@@ -40,6 +40,7 @@ type ReqMsg struct {
 	isReset     bool
 	missCounter int
 	reqCounter  int
+	physicalPs  []*Page
 }
 
 func (s *GlobalState) reqAddress(addr int, replacePolicy int) bool {
@@ -67,6 +68,7 @@ func (s *GlobalState) reqAddress(addr int, replacePolicy int) bool {
 			msg.PN = a
 			msg.isReplace = false
 			msg.isHit = true
+			msg.physicalPs = s.copyPageInfo()
 			s.mu.Unlock()
 			s.signalCh <- msg
 			return true
@@ -83,6 +85,7 @@ func (s *GlobalState) reqAddress(addr int, replacePolicy int) bool {
 			msg.PN = a
 			msg.isReplace = false
 			msg.isHit = false
+			msg.physicalPs = s.copyPageInfo()
 			s.mu.Unlock()
 			s.signalCh <- msg
 			return false
@@ -105,10 +108,26 @@ func (s *GlobalState) reqAddress(addr int, replacePolicy int) bool {
 	msg.PN = pn
 	msg.isReplace = true
 	msg.isHit = false
+	msg.physicalPs = s.copyPageInfo()
 	s.mu.Unlock()
 	s.signalCh <- msg
 	return false
 
+}
+
+func (s *GlobalState) copyPageInfo() []*Page {
+	var re []*Page
+	//s.mu.Lock()
+	//defer s.mu.Unlock()
+	for _, v := range s.physicalPs {
+		if v != nil {
+			p := *v
+			re = append(re, &p)
+		} else {
+			re = append(re, nil)
+		}
+	}
+	return re
 }
 
 func (s *GlobalState) reset(physicalPN int, virtualPN int, policy int) {
