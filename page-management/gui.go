@@ -82,11 +82,15 @@ func (g *GlobalReqState) guiGlobalState(s *GlobalState) *fyne.Container {
 
 	var pps []fyne.CanvasObject
 	for pn, _ := range s.physicalPs {
-		lastEnter := widget.NewLabel("0")
-		lastUsed := widget.NewLabel("0")
-		vn := widget.NewLabel("0")
+		lastEnter := widget.NewLabel("   0")
+		lastUsed := widget.NewLabel("   0")
+		vn := widget.NewLabel("   0")
 		vaild := widget.NewLabel("False")
 		rect := canvas.NewRectangle(gray)
+		lastEnter.TextStyle = fyne.TextStyle{Monospace: true}
+		lastUsed.TextStyle = fyne.TextStyle{Monospace: true}
+		vn.TextStyle = fyne.TextStyle{Monospace: true}
+		vaild.TextStyle = fyne.TextStyle{Monospace: true}
 
 		lastEnters = append(lastEnters, lastEnter)
 		lastUseds = append(lastUseds, lastUsed)
@@ -129,20 +133,20 @@ func (g *GlobalReqState) guiGlobalState(s *GlobalState) *fyne.Container {
 
 			case msg.isReset:
 				insText = fmt.Sprintf("%v\n", "Reset                                              ")
-				ins.Refresh()
+				//ins.Refresh()
 				//ins2.SetText("Reset                                                                ")
 				for a, _ := range s.physicalPs {
 					s.physicalPs[a] = nil
-					lastEnters[a].SetText("0")
-					lastUseds[a].SetText("0")
+					lastEnters[a].SetText("   0")
+					lastUseds[a].SetText("   0")
 					vailds[a].SetText("False")
-					vns[a].SetText("0")
+					vns[a].SetText("   0")
 					rects[a].FillColor = gray //color.White
 					rects[a].Refresh()
 				}
 			case msg.isHit:
 				insText = fmt.Sprintf("%v%v\n", ins.Text, fmt.Sprintf("Page hit for request at:%v", msg.reqAddress))
-				ins.Refresh()
+				//ins.Refresh()
 				//ins2.SetText(fmt.Sprintf("%v%v\n", ins2.Text(), fmt.Sprintf("Page hit for request at:%v", msg.reqAddress)))
 				t := g.timeInterval
 				if t > 0 {
@@ -154,7 +158,7 @@ func (g *GlobalReqState) guiGlobalState(s *GlobalState) *fyne.Container {
 				}
 			case msg.isReplace:
 				insText = fmt.Sprintf("%v%v\n", ins.Text, fmt.Sprintf("Page miss for request at:%v, replacing in at:%v", msg.reqAddress, msg.PN))
-				ins.Refresh()
+				//ins.Refresh()
 				//ins2.SetText(fmt.Sprintf("%v%v\n", ins2.Text(), fmt.Sprintf("Page miss for request at:%v, replacing in at:%v", msg.reqAddress, msg.PN)))
 				t := g.timeInterval
 				if t > 0 {
@@ -165,8 +169,8 @@ func (g *GlobalReqState) guiGlobalState(s *GlobalState) *fyne.Container {
 					rects[msg.PN].Refresh()
 				}
 
-				lastEnters[msg.PN].SetText("0")
-				lastUseds[msg.PN].SetText("0")
+				lastEnters[msg.PN].SetText("   0")
+				lastUseds[msg.PN].SetText("   0")
 				vns[msg.PN].SetText(fmt.Sprint(msg.VN))
 				if t > 0 {
 					rects[msg.PN].FillColor = green
@@ -188,10 +192,10 @@ func (g *GlobalReqState) guiGlobalState(s *GlobalState) *fyne.Container {
 					rects[msg.PN].Refresh()
 				}
 
-				lastEnters[msg.PN].SetText("0")
-				lastUseds[msg.PN].SetText("0")
-				vailds[msg.PN].SetText("True")
-				vns[msg.PN].SetText(fmt.Sprint(msg.VN))
+				lastEnters[msg.PN].SetText("   0")
+				lastUseds[msg.PN].SetText("   0")
+				vailds[msg.PN].SetText(" True")
+				vns[msg.PN].SetText(fmt.Sprintf("%4v", msg.VN))
 				if t > 0 {
 					rects[msg.PN].FillColor = green
 					rects[msg.PN].Refresh()
@@ -204,10 +208,10 @@ func (g *GlobalReqState) guiGlobalState(s *GlobalState) *fyne.Container {
 			}
 
 			for a, _ := range msg.physicalPs {
-				if s.physicalPs[a] != nil {
+				if msg.physicalPs[a] != nil {
 
-					lastEnters[a].SetText(fmt.Sprint(s.physicalPs[a].lastEnter))
-					lastUseds[a].SetText(fmt.Sprint(s.physicalPs[a].lastUsed))
+					lastEnters[a].SetText(fmt.Sprintf("%4v", msg.physicalPs[a].lastEnter))
+					lastUseds[a].SetText(fmt.Sprintf("%4v", msg.physicalPs[a].lastUsed))
 					//vailds[a].SetText("False")
 					//vns[a].SetText("0")
 					//rects[a].FillColor = gray //color.White
@@ -224,6 +228,13 @@ func (g *GlobalReqState) guiGlobalState(s *GlobalState) *fyne.Container {
 			}
 
 			ins.Text = insText
+			/*fmt.Println("///////////////////////////////////////")
+			fmt.Println("&", split[len(split)-1], "$")
+			fmt.Println("len1:", len(split[len(split)-1]))
+			fmt.Println("&", split[len(split)-2], "$")
+			fmt.Println("len2:", len(split[len(split)-2]))
+			fmt.Print(split)*/
+			//ins.Text = "233333"
 			ins.Refresh()
 
 			missC.Text = (fmt.Sprint(msg.missCounter))
@@ -232,6 +243,7 @@ func (g *GlobalReqState) guiGlobalState(s *GlobalState) *fyne.Container {
 			reqC.Refresh()
 			outputWindow.ScrollToBottom()
 			s.mu.Unlock()
+			//time.Sleep(time.Duration(10) * time.Millisecond)
 		}
 	}()
 
@@ -264,8 +276,29 @@ func guiGlobalReqState(g *GlobalReqState) *fyne.Container {
 		for i := 0; i < 50; i++ {
 			a1()
 		}
-		//a1()
-		g.msgCh <- fmt.Sprintf("Adding 50 access", g.lastAddr)
+		g.msgCh <- fmt.Sprintf("Adding 50 access")
+	})
+
+	add320 := widget.NewButton("Add 320 instr (sim workload)", func() {
+		for i := 0; i < 160; i++ {
+			g.mu.Lock()
+			g.lastAddr = (g.lastAddr + 1) % (g.upperBound + 1)
+			g.s.reqAddress(g.lastAddr, g.policy)
+			g.mu.Unlock()
+		}
+		for i := 0; i < 80; i++ {
+			g.mu.Lock()
+			g.lastAddr = rand.Int() % ((g.upperBound + 1) / 2)
+			g.s.reqAddress(g.lastAddr, g.policy)
+			g.mu.Unlock()
+		}
+		for i := 0; i < 80; i++ {
+			g.mu.Lock()
+			g.lastAddr = rand.Int()%((g.upperBound+1)/2) + ((g.upperBound + 1) / 2)
+			g.s.reqAddress(g.lastAddr, g.policy)
+			g.mu.Unlock()
+		}
+		g.msgCh <- fmt.Sprintf("Add 320 instr (sim workload)")
 	})
 
 	inputInstrNum := widget.NewEntry()
@@ -279,7 +312,7 @@ func guiGlobalReqState(g *GlobalReqState) *fyne.Container {
 		g.msgCh <- fmt.Sprintf("Adding %v access", n)
 	})
 
-	instrInsertWin := container.New(layout.NewVBoxLayout(), addNote, add1, add50, container.New(layout.NewVBoxLayout(), inputInstrNum, addN))
+	instrInsertWin := container.New(layout.NewVBoxLayout(), addNote, add1, add50, add320, container.New(layout.NewVBoxLayout(), inputInstrNum, addN))
 
 	addrNote := widget.NewLabel("      Set insert address      ")
 	addrNote.TextStyle = fyne.TextStyle{Monospace: true}

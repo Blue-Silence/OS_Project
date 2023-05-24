@@ -13,7 +13,7 @@ func main() {
 	log.Println("333")
 	w.SetContent(widget.NewLabel("Hello World!"))
 	log.Println("555")
-	rs := MakeGRS(4, 10, PAGE_SIZE)
+	rs := MakeGRS(4, 32, PAGE_SIZE)
 	//rs.s.reset(4, 10, FIFO)
 
 	gui := guiGlobalReqState(&rs)

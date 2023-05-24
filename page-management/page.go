@@ -164,7 +164,7 @@ func (s *GlobalState) findPnLRU() int {
 	for a, p := range s.physicalPs {
 		if p.lastUsed > maxUseAge {
 			pn = a
-			maxUseAge = p.lastEnter
+			maxUseAge = p.lastUsed
 		}
 	}
 	return pn
