@@ -25,16 +25,14 @@ type GlobalState struct {
 	pageSet     []Page
 	reqCounter  int
 	missCounter int
-	//replacePolicy int
-	mu       sync.Mutex
-	signalCh chan ReqMsg
+	mu          sync.Mutex
+	signalCh    chan ReqMsg
 }
 
 type ReqMsg struct {
-	PN         int
-	VN         int
-	reqAddress int
-	//currentPolicy int
+	PN          int
+	VN          int
+	reqAddress  int
 	isReplace   bool
 	isHit       bool
 	isReset     bool
@@ -45,8 +43,7 @@ type ReqMsg struct {
 
 func (s *GlobalState) reqAddress(addr int, replacePolicy int) bool {
 	s.mu.Lock()
-	//log.Println("Hello!")
-	//defer log.Println("There~")
+
 	vn := addr / PAGE_SIZE
 
 	msg := ReqMsg{VN: vn, reqAddress: addr}
