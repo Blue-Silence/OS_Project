@@ -25,27 +25,25 @@ type GlobalState struct {
 	pageSet     []Page
 	reqCounter  int
 	missCounter int
-	//replacePolicy int
-	mu       sync.Mutex
-	signalCh chan ReqMsg
+	mu          sync.Mutex
+	signalCh    chan ReqMsg
 }
 
 type ReqMsg struct {
-	PN         int
-	VN         int
-	reqAddress int
-	//currentPolicy int
+	PN          int
+	VN          int
+	reqAddress  int
 	isReplace   bool
 	isHit       bool
 	isReset     bool
 	missCounter int
 	reqCounter  int
+	physicalPs  []*Page
 }
 
 func (s *GlobalState) reqAddress(addr int, replacePolicy int) bool {
 	s.mu.Lock()
-	//log.Println("Hello!")
-	//defer log.Println("There~")
+
 	vn := addr / PAGE_SIZE
 
 	msg := ReqMsg{VN: vn, reqAddress: addr}
@@ -67,6 +65,7 @@ func (s *GlobalState) reqAddress(addr int, replacePolicy int) bool {
 			msg.PN = a
 			msg.isReplace = false
 			msg.isHit = true
+			msg.physicalPs = s.copyPageInfo()
 			s.mu.Unlock()
 			s.signalCh <- msg
 			return true
@@ -83,6 +82,7 @@ func (s *GlobalState) reqAddress(addr int, replacePolicy int) bool {
 			msg.PN = a
 			msg.isReplace = false
 			msg.isHit = false
+			msg.physicalPs = s.copyPageInfo()
 			s.mu.Unlock()
 			s.signalCh <- msg
 			return false
@@ -105,10 +105,26 @@ func (s *GlobalState) reqAddress(addr int, replacePolicy int) bool {
 	msg.PN = pn
 	msg.isReplace = true
 	msg.isHit = false
+	msg.physicalPs = s.copyPageInfo()
 	s.mu.Unlock()
 	s.signalCh <- msg
 	return false
 
+}
+
+func (s *GlobalState) copyPageInfo() []*Page {
+	var re []*Page
+	//s.mu.Lock()
+	//defer s.mu.Unlock()
+	for _, v := range s.physicalPs {
+		if v != nil {
+			p := *v
+			re = append(re, &p)
+		} else {
+			re = append(re, nil)
+		}
+	}
+	return re
 }
 
 func (s *GlobalState) reset(physicalPN int, virtualPN int, policy int) {
@@ -145,7 +161,7 @@ func (s *GlobalState) findPnLRU() int {
 	for a, p := range s.physicalPs {
 		if p.lastUsed > maxUseAge {
 			pn = a
-			maxUseAge = p.lastEnter
+			maxUseAge = p.lastUsed
 		}
 	}
 	return pn
