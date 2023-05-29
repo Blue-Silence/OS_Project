@@ -26,36 +26,36 @@ func (L *FSLog) constructLog(inodes []INode, ds []DataBlockMem) {
 		L.data[v.inode] = append(L.data[v.inode], v)
 	}
 
-	/*length := 0
+}
+func (L *FSLog) lenInBlock() (int, int, int, int) {
+	inodeBlockN := 0
+	inodeMapN := 0
+	dataBlockN := 0
+	segLen := 0
 	for _, v := range L.inodeByImap {
-		length++
-		length += len(v)
+		inodeBlockN += len(v)
+		inodeMapN++
 	}
+	inodeBlockN = inodeBlockN / INodePerBlock
+
 	for _, v := range L.data {
-		length += len(v)
+		dataBlockN += len(v)
 	}
-	L.len = length*/
+
+	segLen = inodeMapN + inodeBlockN + dataBlockN + 1
+	return inodeMapN, inodeBlockN, dataBlockN, segLen
 }
 
 func (L *FSLog) log2DiskBlock(start int, inodeMap map[int]INodeMap) ([]Block, map[int]int) {
-	re := []Block{}
 	var segHead SegHead
-
-	for _, v := range L.inodeByImap {
-		segHead.inodeBlockN += len(v)
-		segHead.inodeMapN++
-	}
-	segHead.inodeBlockN = segHead.inodeBlockN / INodePerBlock
-
-	for _, v := range L.data {
-		segHead.dataBlockN += len(v)
-	}
+	segHead.inodeMapN, segHead.inodeBlockN, segHead.dataBlockN, _ = L.lenInBlock()
 
 	var dataBlock []Block
 
 	for _, v := range L.inodeByImap {
 		for _, n := range v {
 			for _, dataB := range L.data[n.inodeN] {
+				segHead.dataBlockSummary[len(dataBlock)-1] = FileIndexInfo{n.inodeN, dataB.index}
 				dataBlock = append(dataBlock, dataB.data)
 				n.pointers[dataB.index] = start + 1 + segHead.inodeMapN + segHead.inodeBlockN + len(dataBlock) - 1
 			}
@@ -86,7 +86,24 @@ func (L *FSLog) log2DiskBlock(start int, inodeMap map[int]INodeMap) ([]Block, ma
 		imapBlock = append(imapBlock, v)
 		returnMap[v.offset/InodePerInodemapBlock] = start + 1 + len(imapBlock) - 1
 	}
-	//var returnBlock []Block
-	//returnBlock[1] = segHead
-	return append(append(append([]Block{SegHead}, imapBlock...), nodesByBlock...), dataBlock...), returnMap
+
+	re := []Block{segHead}
+	for _, v := range imapBlock {
+		re = append(re, v)
+	}
+	for _, v := range nodesByBlock {
+		re = append(re, v)
+	}
+	for _, v := range dataBlock {
+		re = append(re, v)
+	}
+	return re, returnMap
+}
+
+func (L *FSLog) imapNeeded() []int {
+	var re []int
+	for i, _ := range L.inodeByImap {
+		re = append(re, i)
+	}
+	return re
 }

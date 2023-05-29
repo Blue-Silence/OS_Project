@@ -7,7 +7,88 @@ type FS struct {
 	VD         VirtualDisk
 } //This is the file system data structure in memory
 
-func (fs *FS) formatFS(VD VirtualDisk) {
+func (fs *FS) readFile(inodeN int, index int) Block {
+	inode := fs.iNodeN2iNode(inodeN)
+	if inode.valid == false {
+		log.Fatal("No valid inode found for:", inodeN)
+	}
+	return fs.VD.readBlock(inode.pointers[index])
+}
+
+func (fs *FS) iNodeN2iNode(n int) INode {
+	iNodemapN := fs.superBlock.iNodeMaps[n/InodePerInodemapBlock]
+	var iNodemap INodeMap = (fs.VD.readBlock(iNodemapN)).(INodeMap)
+	iNodeBlockN := iNodemap.inodeMapPart[n-iNodemap.offset]
+	if iNodemap.offset != n/InodePerInodemapBlock {
+		log.Fatal("Warning!Mistmatch!")
+	}
+
+	var nB INodeBlock = (fs.VD.readBlock(iNodeBlockN)).(INodeBlock)
+	for _, v := range nB.nodeArr {
+		if v.valid && v.inodeN == n {
+			return v
+		}
+	}
+	return INode{valid: false}
+}
+
+func (fs *FS) findSpaceForSeg(len int) int {
+	segStart := -1
+	count := 0
+	for i, v := range fs.superBlock.bitMap {
+		if !v {
+			count++
+			if count == len {
+				segStart = i - (len - 1)
+				break
+			}
+		} else {
+			count = 0
+		}
+	}
+	return segStart
+}
+
+func (fs *FS) applyUpdate(start int, bs []Block, newIMapLocation map[int]int) {
+	super := fs.superBlock
+	for i, v := range newIMapLocation {
+		super.iNodeMaps[i] = v
+	} // Update imap address
+	for i, v := range bs {
+		fs.VD.writeBlock(i+start, v)
+		super.bitMap[start+i] = true
+	}
+	fs.superBlock = super
+	fs.VD.writeSuperBlock(super)
+}
+
+func (fs *FS) reclaimBlock(start int, len int) {
+	super := fs.superBlock
+	for i := 0; i < len; i++ {
+		super.bitMap[start+i] = true
+	}
+	fs.superBlock = super
+	fs.VD.writeSuperBlock(super)
+}
+
+/*func (fs *FS) writeFile(inodeN int, index int, data Block) {
+	inode := fs.iNodeN2iNode(inodeN)
+	if inode.valid == false {
+		log.Fatal("No valid inode found for:", inodeN)
+	}
+	var segHead SegHead
+	segHead.dataBlockN = 1
+	segHead.inodeMapN = 1
+	segHead.inodeBlockN = 1
+	segStart := fs.findSpaceForSeg(segHead.len())
+	if segStart == -1 {
+		log.Fatal("No space!")
+	} // We will do gc later.
+	segHead.dataBlockSummary[0] = FileIndexInfo{inodeN: inodeN, index: index}
+
+}*/
+
+/*func (fs *FS) formatFS(VD VirtualDisk) {
 	fs.VD = VD
 	var s SuperBlock
 
@@ -51,64 +132,4 @@ func (fs *FS) formatFS(VD VirtualDisk) {
 	fs.superBlock = s
 	fs.VD.writeSuperBlock(s)
 
-}
-
-func (fs *FS) readFile(inodeN int, index int) Block {
-	inode := fs.iNodeN2iNode(inodeN)
-	if inode.valid == false {
-		log.Fatal("No valid inode found for:", inodeN)
-	}
-	return fs.VD.readBlock(inode.pointers[index])
-}
-
-func (fs *FS) iNodeN2iNode(n int) INode {
-	iNodemapN := fs.superBlock.iNodeMaps[n/InodePerInodemapBlock]
-	var iNodemap INodeMap = fs.VD.readBlock(iNodemapN)
-	iNodeBlockN := iNodemap.inodeMapPart[n-iNodemap.offset]
-	if iNodemap.offset != n/InodePerInodemapBlock {
-		log.Fatal("Warning!Mistmatch!")
-	}
-
-	var nB INodeBlock = fs.VD.readBlock(iNodeBlockN)
-	for _, v := range nB.nodeArr {
-		if v.valid && v.inodeN == n {
-			return v
-		}
-	}
-	return INode{valid: false}
-}
-
-func (fs *FS) findSpaceForSeg(len int) int {
-
-	segStart := -1
-	count := 0
-	for i, v := range fs.superBlock.bitMap {
-		if !v {
-			count++
-			if count == len {
-				segStart = i - (len - 1)
-				break
-			}
-		} else {
-			count = 0
-		}
-	}
-	return segStart
-}
-
-func (fs *FS) writeFile(inodeN int, index int, data Block) {
-	inode := fs.iNodeN2iNode(inodeN)
-	if inode.valid == false {
-		log.Fatal("No valid inode found for:", inodeN)
-	}
-	var segHead SegHead
-	segHead.dataBlockN = 1
-	segHead.inodeMapN = 1
-	segHead.inodeBlockN = 1
-	segStart := fs.findSpaceForSeg(segHead.len())
-	if segStart == -1 {
-		log.Fatal("No space!")
-	} // We will do gc later.
-	segHead.dataBlockSummary[0] = FileIndexInfo{inodeN: inodeN, index: index}
-
-}
+}*/

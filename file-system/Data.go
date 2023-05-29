@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 const MaxEditBlcokN int = 100
 
 const (
@@ -61,10 +59,25 @@ type FolderBlock struct {
 } // 1 per block
 
 type Block interface {
-	toStore() string
-	fromStore(string) Block
+	//toStore() string
+	//fromStore(string) Block
+	canBeBlock()
 }
 
+func (s SuperBlock) canBeBlock() {
+}
+func (s SegHead) canBeBlock() {
+}
+func (s INodeMap) canBeBlock() {
+}
+func (s INodeBlock) canBeBlock() {
+}
+func (s DataBlock) canBeBlock() {
+}
+func (s FolderBlock) canBeBlock() {
+}
+
+/*
 func (s SuperBlock) toStore() string {
 	return fmt.Sprintf("{SUPERBLOCK %v %v %v}", s.newestSegHead, s.iNodeMaps, s.bitMap)
 }
@@ -108,4 +121,4 @@ func (s DataBlock) toStore() string {
 func (s DataBlock) fromStore(str string) Block {
 	fmt.Sscanf(str, "{DB %v}", &s.data)
 	return s
-}
+}*/
