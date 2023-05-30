@@ -1,6 +1,9 @@
 package main
 
-import "log"
+import (
+	"fmt"
+	"log"
+)
 
 type AppFS struct {
 	fs   FS
@@ -19,10 +22,15 @@ func (afs *AppFS) formatFS(VD VirtualDisk) {
 	initStart := afs.fs.findSpaceForSeg(initSegLen)
 	blocks, imapLs := afs.fLog.log2DiskBlock(initStart, make(map[int]INodeMap))
 	afs.fs.applyUpdate(initStart, blocks, imapLs)
+	afs.fLog.initLog()
 }
 
 func createInode(fType int, name string, valid bool, inodeN int) INode {
-	return INode{valid: valid, fileType: fType, name: name, inodeN: inodeN}
+	in := INode{valid: valid, fileType: fType, name: name, inodeN: inodeN}
+	for i, _ := range in.pointers {
+		in.pointers[i] = -1 //Init to invalid pointers
+	}
+	return in
 }
 
 func (afs *AppFS) findFreeINode() int {
@@ -59,10 +67,15 @@ func (afs *AppFS) isINodeInLog(n int) bool {
 	return false
 }
 
+func (afs *AppFS) getFileINfo(inodeN int) INode {
+	return afs.fs.iNodeN2iNode(inodeN)
+}
+
 func (afs *AppFS) createFile(fType int, name string) int {
 	newInodeN := afs.findFreeINode()
 	if afs.isINodeInLog(newInodeN) {
 		afs.logCommit()
+		fmt.Println("Ha?")
 		newInodeN = afs.findFreeINode()
 	} //Avoid reallocating a inode.
 
@@ -72,7 +85,33 @@ func (afs *AppFS) createFile(fType int, name string) int {
 	if afs.fLog.constructLog([]INode{createInode(fType, name, true, newInodeN)}, []DataBlockMem{}) {
 	} else {
 		afs.logCommit()
+		fmt.Println("Oh?")
 		afs.fLog.constructLog([]INode{createInode(fType, name, true, newInodeN)}, []DataBlockMem{})
 	}
 	return newInodeN
+}
+
+func (afs *AppFS) writeFile(inodeN int, index []int, data []Block) {
+	inode := afs.fs.iNodeN2iNode(inodeN)
+	if inode.valid == false {
+		log.Fatal("Invalid write to non-exsistent inode:", inodeN, "  get inode:", inode)
+	}
+	ds := []DataBlockMem{}
+	for i, v := range index {
+		ds = append(ds, DataBlockMem{inode: inodeN, index: v, data: data[i]})
+	}
+	afs.fLog.constructLog([]INode{inode}, ds)
+}
+
+func (afs *AppFS) readFile(inodeN int, index int) Block {
+	if afs.isINodeInLog(inodeN) {
+		afs.logCommit()
+	}
+	return afs.fs.readFile(inodeN, index)
+}
+
+func (afs *AppFS) deleteFile(inodeN int) {
+	inode := INode{inodeN: inodeN, valid: false}
+	afs.fLog.constructLog([]INode{inode}, []DataBlockMem{})
+
 }

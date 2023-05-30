@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 type DataBlockMem struct {
 	inode int
 	index int
@@ -28,6 +30,7 @@ func (L *FSLog) constructLog(inodes []INode, ds []DataBlockMem) bool {
 	}
 	for _, v := range ds {
 		L.data[v.inode] = append(L.data[v.inode], v)
+		fmt.Printf("inode:%v index:%v\n", v.inode, v.index)
 	}
 	return true
 }
@@ -41,7 +44,8 @@ func (L *FSLog) lenInBlock() (int, int, int, int) {
 		inodeBlockN += len(v)
 		inodeMapN++
 	}
-	inodeBlockN = inodeBlockN / INodePerBlock
+
+	inodeBlockN = inodeBlockN/INodePerBlock + (inodeBlockN%INodePerBlock)%2
 
 	for _, v := range L.data {
 		dataBlockN += len(v)
@@ -57,12 +61,15 @@ func (L *FSLog) log2DiskBlock(start int, inodeMap map[int]INodeMap) ([]Block, ma
 
 	var dataBlock []Block
 
-	for _, v := range L.inodeByImap {
-		for _, n := range v {
+	for iv, v := range L.inodeByImap {
+		for in, n := range v {
+			//fmt.Println("\nInode:", n.inodeN, "    dataBlock num:", len(L.data[n.inodeN]))
+
 			for _, dataB := range L.data[n.inodeN] {
-				segHead.dataBlockSummary[len(dataBlock)-1] = FileIndexInfo{n.inodeN, dataB.index}
 				dataBlock = append(dataBlock, dataB.data)
+				segHead.dataBlockSummary[len(dataBlock)-1] = FileIndexInfo{n.inodeN, dataB.index}
 				n.pointers[dataB.index] = start + 1 + segHead.inodeMapN + segHead.inodeBlockN + len(dataBlock) - 1
+				L.inodeByImap[iv][in] = n
 			}
 		}
 	}
