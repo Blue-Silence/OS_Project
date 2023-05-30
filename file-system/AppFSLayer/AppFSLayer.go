@@ -123,6 +123,17 @@ func (afs *AppFS) DeleteFile(inodeN int) {
 	afs.fLog.ConstructLog([]BlockLayer.INode{inode}, []LogLayer.DataBlockMem{})
 }
 
+func (afs *AppFS) DeleteBlockInFile(inodeN int, index []int) {
+	if afs.isINodeInLog(inodeN) {
+		afs.LogCommit()
+	}
+	inode := afs.blockFs.INodeN2iNode(inodeN)
+	for _, v := range index {
+		inode.Pointers[v] = -1
+	}
+	afs.fLog.ConstructLog([]BlockLayer.INode{inode}, []LogLayer.DataBlockMem{})
+}
+
 //////////////////////
 /////////////    the function bellow is to get debug info. Don't use these!
 

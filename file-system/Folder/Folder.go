@@ -1,9 +1,13 @@
 package Folder
 
-
+import (
+	"LSF/AppFSLayer"
+	"LSF/DiskLayer"
+	"LSF/Setting"
+)
 
 const (
-	MaxFilePerFolderBlock = (BlockSize / 512) //this can be changed.
+	MaxFilePerFolderBlock = (Setting.BlockSize / 512) //this can be changed.
 	MaxNameLen            = 256
 )
 
@@ -16,22 +20,75 @@ type fileEntry struct {
 	valid bool
 }
 
-func (s FolderBlock) canBeBlock() {
+func (s FolderBlock) CanBeBlock() {
 }
 
-func (afs *AppFS) concatFolder(floderIN int) []fileEntry {
-	folderINode := afs.getFileINfo(folderIN)
+func concatFolder(afs *AppFSLayer.AppFS, folderIN int) []fileEntry {
+	folderINode := afs.GetFileINfo(folderIN)
 	re := []fileEntry{}
-	for _,v := folderINode.
+	for i, _ := range folderINode.Pointers {
+		co := afs.ReadFile(folderIN, i).(FolderBlock).fileEntrys
+		re = append(re, co[:]...)
+	}
+	return re
 }
 
+func rebuildFolder(fEs []fileEntry) ([]int, []DiskLayer.Block) {
+	returnIndex := []int{}
+	returnBlock := []DiskLayer.Block{}
+	i := 0
+	for {
+		if len(fEs) > 0 {
+			returnIndex = append(returnIndex, i)
+			i++
+			fEB := FolderBlock{}
+			copy(fEB.fileEntrys[:], fEs)
+			returnBlock = append(returnBlock, fEB)
 
-func (afs *AppFS) AddFileToFolder(floderIN int, fileIN int) {
-	fileINode := afs.getFileINfo(fileIN)
-	folderINode := afs.getFileINfo(folderIN)
-	fE := fileEntry{name: fileINode.name, inode: fileINode.inodeN, valid: true}
-	p := -1
-	for i,v := range folderINode.pointers {
-		if
+			if len(fEs) > MaxFilePerFolderBlock {
+				fEs = fEs[MaxFilePerFolderBlock-1:]
+			} else {
+				break
+			}
+		} else {
+			break
+		}
 	}
+	return returnIndex, returnBlock
+}
+
+func AddFileToFolder(afs *AppFSLayer.AppFS, folderIN int, fileIN int) {
+	fEs := concatFolder(afs, folderIN)
+	fileINode := afs.GetFileINfo(fileIN)
+	folderINode := afs.GetFileINfo(folderIN)
+	fE := fileEntry{name: fileINode.Name, inode: fileINode.InodeN, valid: true}
+	fEs = append(fEs, fE)
+	indexs, bs := rebuildFolder(fEs)
+	afs.DeleteBlockInFile(folderIN, folderINode.Pointers[:])
+	afs.WriteFile(folderIN, indexs, bs)
+}
+
+func DeleteFileToFolder(afs *AppFSLayer.AppFS, folderIN int, fileIN int) {
+	fEs := concatFolder(afs, folderIN)
+	folderINode := afs.GetFileINfo(folderIN)
+	newFe := []fileEntry{}
+	for _, v := range fEs {
+		if v.inode != fileIN {
+			newFe = append(newFe, v)
+		}
+	}
+	indexs, bs := rebuildFolder(newFe)
+	afs.DeleteBlockInFile(folderIN, folderINode.Pointers[:])
+	afs.WriteFile(folderIN, indexs, bs)
+	afs.DeleteFile(fileIN)
+}
+
+func GetFolderContent(afs *AppFSLayer.AppFS, inode int) map[string]int {
+	nameMapping := make(map[string]int)
+	for _, v := range concatFolder(afs, inode) {
+		if v.valid {
+			nameMapping[v.name] = v.inode
+		}
+	}
+	return nameMapping
 }
