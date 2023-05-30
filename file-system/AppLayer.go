@@ -68,6 +68,9 @@ func (afs *AppFS) isINodeInLog(n int) bool {
 }
 
 func (afs *AppFS) getFileINfo(inodeN int) INode {
+	if afs.isINodeInLog(inodeN) {
+		afs.logCommit()
+	}
 	return afs.fs.iNodeN2iNode(inodeN)
 }
 
@@ -92,6 +95,9 @@ func (afs *AppFS) createFile(fType int, name string) int {
 }
 
 func (afs *AppFS) writeFile(inodeN int, index []int, data []Block) {
+	if afs.isINodeInLog(inodeN) {
+		afs.logCommit()
+	}
 	inode := afs.fs.iNodeN2iNode(inodeN)
 	if inode.valid == false {
 		log.Fatal("Invalid write to non-exsistent inode:", inodeN, "  get inode:", inode)
@@ -111,6 +117,9 @@ func (afs *AppFS) readFile(inodeN int, index int) Block {
 }
 
 func (afs *AppFS) deleteFile(inodeN int) {
+	if afs.isINodeInLog(inodeN) {
+		afs.logCommit()
+	}
 	inode := INode{inodeN: inodeN, valid: false}
 	afs.fLog.constructLog([]INode{inode}, []DataBlockMem{})
 

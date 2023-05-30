@@ -86,6 +86,27 @@ func testFileWrite(afs AppFS) {
 		}
 		fmt.Println("Index:", v, "  test passed?: ", testF)
 	}
+	fmt.Println("-------------------Test read after other write----------------------------")
+	ds2 := []Block{createDataBlock(), createDataBlock(), createDataBlock(), createDataBlock(), createDataBlock()}
+	inodeN2 := afs.createFile(NormalFile, "TestWrite")
+	afs.writeFile(inodeN2, indexL, ds2)
+	afs.logCommit()
+	inode2 := afs.getFileINfo(inodeN2)
+	fmt.Println(inode2)
+	afs.deleteFile(inodeN2)
+	afs.logCommit()
+
+	for iD, v := range indexL {
+		testF := true
+		arr := afs.readFile(inodeN, v).(DataBlock).data
+		for i := 0; i < BlockSize; i++ {
+			if ds[iD].(DataBlock).data[i] != arr[i] {
+				testF = false
+			}
+		}
+		fmt.Println("Index:", v, "  test passed?: ", testF)
+	}
+
 	fmt.Println("-------------------Test write done----------------------------")
 }
 
