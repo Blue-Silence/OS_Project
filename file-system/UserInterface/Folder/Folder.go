@@ -114,19 +114,8 @@ func DeleteFileToFolder(afs *AppFSLayer.AppFS, folderIN int, fileIN int) {
 
 	afs.DeleteBlockInFile(folderIN, deleteI)
 
-	//afs.DeleteFile(fileIN) //?
-
-	fmt.Println("-----------------------------------------------------------------------------------------------------")
-	//afs.DeleteFile(fileIN)
 	afs.WriteFile(folderIN, indexs, bs)
-	//afs.PrintLogUnsafe()
-	//afs.PrintLogUnsafe()
-	//afs.LogCommit() //
 	afs.DeleteFile(fileIN)
-	//fmt.Println("folderIN", folderIN)
-	//fmt.Println("fileIN", fileIN)
-	//afs.PrintLogUnsafe()
-	fmt.Println("-----------------------------------------------------------------------------------------------------")
 
 }
 

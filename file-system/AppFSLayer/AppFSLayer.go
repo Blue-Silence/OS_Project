@@ -96,7 +96,6 @@ func (afs *AppFS) CreateFile(fType int, name string) int {
 func (afs *AppFS) WriteFile(inodeN int, index []int, data []DiskLayer.Block) {
 	if afs.isINodeInLog(inodeN) {
 		afs.LogCommit()
-		fmt.Println("Seriously?")
 	}
 	inode := afs.blockFs.INodeN2iNode(inodeN)
 	if inode.Valid == false {
@@ -119,7 +118,6 @@ func (afs *AppFS) ReadFile(inodeN int, index int) DiskLayer.Block {
 func (afs *AppFS) DeleteFile(inodeN int) {
 	if afs.isINodeInLog(inodeN) {
 		afs.LogCommit()
-		fmt.Println("AZZZZZ")
 	}
 	inode := BlockLayer.INode{InodeN: inodeN, Valid: false}
 	afs.fLog.ConstructLog([]BlockLayer.INode{inode}, []LogLayer.DataBlockMem{})
