@@ -18,15 +18,20 @@ func (L *FSLog) initLog() {
 	//L.len = 0
 }
 
-func (L *FSLog) constructLog(inodes []INode, ds []DataBlockMem) {
+func (L *FSLog) constructLog(inodes []INode, ds []DataBlockMem) bool {
+	_, _, dataBlockN, _ := L.lenInBlock()
+	if len(ds)+dataBlockN > MaxEditBlcokN {
+		return false
+	}
 	for _, v := range inodes {
 		L.inodeByImap[v.inodeN/InodePerInodemapBlock] = append(L.inodeByImap[v.inodeN/InodePerInodemapBlock], v)
 	}
 	for _, v := range ds {
 		L.data[v.inode] = append(L.data[v.inode], v)
 	}
-
+	return true
 }
+
 func (L *FSLog) lenInBlock() (int, int, int, int) {
 	inodeBlockN := 0
 	inodeMapN := 0

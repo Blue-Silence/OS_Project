@@ -25,15 +25,6 @@ func createInode(fType int, name string, valid bool, inodeN int) INode {
 	return INode{valid: valid, fileType: fType, name: name, inodeN: inodeN}
 }
 
-func (afs *AppFS) createFile(fType int, name string) int {
-	newInodeN := afs.findFreeINode()
-	//MAYBE WE SHOULD CLEAR THE LOG BEFORE CONTINUE?
-	if newInodeN == -1 {
-		log.Fatal("No inode number available.") //Maybe later we should check the log? Maybe later. TO BE DONE
-	}
-	afs.fLog.constructLog([]INode{createInode(fType, name, true, newInodeN)}, []DataBlockMem{})
-}
-
 func (afs *AppFS) findFreeINode() int {
 	for i := 0; i < MaxInodeN; i++ {
 		if afs.fs.iNodeN2iNode(i).valid == false {
@@ -41,4 +32,47 @@ func (afs *AppFS) findFreeINode() int {
 		}
 	}
 	return -1
+}
+
+func (afs *AppFS) logCommit() {
+	imapNeeded := make(map[int]INodeMap)
+	for _, v := range afs.fLog.imapNeeded() {
+		imapNeeded[v] = (afs.fs.VD.readBlock(afs.fs.superBlock.iNodeMaps[v])).(INodeMap)
+	} //Get inaodmap needed
+	_, _, _, logSegLen := afs.fLog.lenInBlock()
+	start := afs.fs.findSpaceForSeg(logSegLen)
+	if start < 0 {
+		//WE will add GC later. TO BE DONE
+		log.Fatal("No space!")
+	}
+	bs, newIMap := afs.fLog.log2DiskBlock(start, imapNeeded)
+	afs.fs.applyUpdate(start, bs, newIMap)
+	afs.fLog.initLog()
+}
+
+func (afs *AppFS) isINodeInLog(n int) bool {
+	for _, v := range afs.fLog.inodeByImap[n/InodePerInodemapBlock] {
+		if v.inodeN == n {
+			return true
+		}
+	}
+	return false
+}
+
+func (afs *AppFS) createFile(fType int, name string) int {
+	newInodeN := afs.findFreeINode()
+	if afs.isINodeInLog(newInodeN) {
+		afs.logCommit()
+		newInodeN = afs.findFreeINode()
+	} //Avoid reallocating a inode.
+
+	if newInodeN == -1 {
+		log.Fatal("No inode number available.") //Maybe later we should check the log? Maybe later. TO BE DONE
+	}
+	if afs.fLog.constructLog([]INode{createInode(fType, name, true, newInodeN)}, []DataBlockMem{}) {
+	} else {
+		afs.logCommit()
+		afs.fLog.constructLog([]INode{createInode(fType, name, true, newInodeN)}, []DataBlockMem{})
+	}
+	return newInodeN
 }
