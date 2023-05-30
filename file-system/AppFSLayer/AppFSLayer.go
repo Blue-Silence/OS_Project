@@ -5,7 +5,8 @@ import (
 	"LSF/DiskLayer"
 	"LSF/LogLayer"
 	"LSF/Setting"
-	"fmt"
+
+	//"fmt"
 	"log"
 )
 
@@ -77,7 +78,7 @@ func (afs *AppFS) CreateFile(fType int, name string) int {
 	newInodeN := afs.findFreeINode()
 	if afs.isINodeInLog(newInodeN) {
 		afs.LogCommit()
-		fmt.Println("Ha?")
+		//fmt.Println("Ha?")
 		newInodeN = afs.findFreeINode()
 	} //Avoid reallocating a inode.
 
@@ -87,7 +88,7 @@ func (afs *AppFS) CreateFile(fType int, name string) int {
 	if afs.fLog.ConstructLog([]BlockLayer.INode{createInode(fType, name, true, newInodeN)}, []LogLayer.DataBlockMem{}) {
 	} else {
 		afs.LogCommit()
-		fmt.Println("Oh?")
+		//fmt.Println("Oh?")
 		afs.fLog.ConstructLog([]BlockLayer.INode{createInode(fType, name, true, newInodeN)}, []LogLayer.DataBlockMem{})
 	}
 	return newInodeN
@@ -144,6 +145,6 @@ func (afs *AppFS) ReadSuperUnsafe() BlockLayer.SuperBlock {
 	return afs.blockFs.VD.ReadSuperBlock().(BlockLayer.SuperBlock)
 }
 
-func (afs *AppFS) PrintLogUnsafe() {
+/*func (afs *AppFS) PrintLogUnsafe() {
 	afs.fLog.PrintLog()
-}
+}*/

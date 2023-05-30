@@ -4,7 +4,8 @@ import (
 	"LSF/BlockLayer"
 	"LSF/DiskLayer"
 	"LSF/Setting"
-	"fmt"
+
+	//"fmt"
 	"log"
 )
 
@@ -31,7 +32,7 @@ func (L *FSLog) ConstructLog(inodes []BlockLayer.INode, ds []DataBlockMem) bool 
 	if len(ds)+dataBlockN > BlockLayer.MaxEditBlcokN {
 		return false
 	}
-	fmt.Println("Test:", len(ds)+dataBlockN)
+	//fmt.Println("Test:", len(ds)+dataBlockN)
 	for _, v := range inodes {
 		L.inodeByImap[v.InodeN/Setting.InodePerInodemapBlock] = append(L.inodeByImap[v.InodeN/Setting.InodePerInodemapBlock], v)
 	}
@@ -155,6 +156,8 @@ func (L *FSLog) IsINodeInLog(n int) bool {
 
 // ///////////////////////////////////////////////////////////////////////////
 // ///// FOR TEST
+/*
 func (L *FSLog) PrintLog() {
 	fmt.Println(L)
 }
+*/

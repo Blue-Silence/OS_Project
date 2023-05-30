@@ -108,15 +108,16 @@ func Delete(afs *AppFSLayer.AppFS, path string) string {
 	}
 	//p := afs.GetFileINfo(hanP.inode)
 	if afs.GetFileINfo(p.inode).FileType == BlockLayer.Folder {
-		fileL := Folder.GetFolderContent(afs, hanP.inode)
-		for _, in := range fileL {
-			afs.DeleteFile(in)
+		fileL := Folder.GetFolderContent(afs, p.inode)
+		for childN, _ := range fileL {
+			Delete(afs, fmt.Sprint(path, "/", childN))
+			//afs.DeleteFile(in)
 		}
-		return "Not a folder."
+		//return "Not a folder."
 	}
-	{
-		Folder.DeleteFileToFolder(afs, hanP.inode, p.inode)
-	}
+
+	Folder.DeleteFileToFolder(afs, hanP.inode, p.inode)
+
 	return ""
 }
 

@@ -4,7 +4,7 @@ import (
 	"LSF/AppFSLayer"
 	"LSF/DiskLayer"
 	"LSF/Setting"
-	"fmt"
+	//"fmt"
 )
 
 const (
@@ -27,13 +27,13 @@ func (s FolderBlock) CanBeBlock() {
 func concatFolder(afs *AppFSLayer.AppFS, folderIN int) []fileEntry {
 	folderINode := afs.GetFileINfo(folderIN)
 	re := []fileEntry{}
-	maxI := 0
+	//maxI := 0
 	for i, v := range folderINode.Pointers {
 		if v >= 0 {
-			maxI = i
-			//fmt.Println("Is it ok?")
+			//maxI = i
+			////fmt.Println("Is it ok?")
 			co := afs.ReadFile(folderIN, i).(FolderBlock).fileEntrys
-			//fmt.Println("Ok!")
+			////fmt.Println("Ok!")
 			for _, v := range co {
 				if v.valid {
 					re = append(re, v)
@@ -42,7 +42,7 @@ func concatFolder(afs *AppFSLayer.AppFS, folderIN int) []fileEntry {
 			//re = append(re, co[:]...)
 		}
 	}
-	fmt.Println("Max i to:", maxI)
+	//fmt.Println("Max i to:", maxI)
 	return re
 }
 
@@ -81,7 +81,7 @@ func AddFileToFolder(afs *AppFSLayer.AppFS, folderIN int, fileIN int) {
 	fileINode := afs.GetFileINfo(fileIN)
 	folderINode := afs.GetFileINfo(folderIN)
 	fE := fileEntry{name: fileINode.Name, inode: fileINode.InodeN, valid: true}
-	fmt.Println("Before adding:", fEs)
+	//fmt.Println("Before adding:", fEs)
 	//fEs
 	fEs = append(fEs, fE)
 
@@ -143,14 +143,14 @@ type FileEntry2 struct {
 func ConcatFolderUnsafe(afs *AppFSLayer.AppFS, folderIN int) []FolderBlock2 {
 	folderINode := afs.GetFileINfo(folderIN)
 	re := []FolderBlock2{}
-	maxI := 0
+	//maxI := 0
 	for i, v := range folderINode.Pointers {
 		re = append(re, FolderBlock2{})
 		if v > 0 {
-			maxI = i
-			//fmt.Println("Is it ok?")
+			//maxI = i
+			////fmt.Println("Is it ok?")
 			co := afs.ReadFile(folderIN, i).(FolderBlock).fileEntrys
-			//fmt.Println("Ok!")
+			////fmt.Println("Ok!")
 			for x, v := range co {
 
 				re[i].F[x].Name = v.name
@@ -161,6 +161,6 @@ func ConcatFolderUnsafe(afs *AppFSLayer.AppFS, folderIN int) []FolderBlock2 {
 		//re = append(re, co[:]...)
 	}
 
-	fmt.Println("Max i to:", maxI)
+	//fmt.Println("Max i to:", maxI)
 	return re
 }
