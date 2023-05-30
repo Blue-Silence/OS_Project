@@ -5,6 +5,7 @@ import (
 	"LSF/DiskLayer"
 	"LSF/Setting"
 	"fmt"
+	"log"
 )
 
 type DataBlockMem struct {
@@ -30,13 +31,16 @@ func (L *FSLog) ConstructLog(inodes []BlockLayer.INode, ds []DataBlockMem) bool 
 	if len(ds)+dataBlockN > BlockLayer.MaxEditBlcokN {
 		return false
 	}
+	fmt.Println("Test:", len(ds)+dataBlockN)
 	for _, v := range inodes {
 		L.inodeByImap[v.InodeN/Setting.InodePerInodemapBlock] = append(L.inodeByImap[v.InodeN/Setting.InodePerInodemapBlock], v)
 	}
 	for _, v := range ds {
 		L.data[v.Inode] = append(L.data[v.Inode], v)
-		fmt.Printf("inode:%v index:%v\n", v.Inode, v.Index)
+		//fmt.Printf("inode:%v index:%v\n", v.Inode, v.Index)
 	}
+	//_, _, dataBlockN2, _ := L.LenInBlock()
+	//fmt.Println("AAA DataBlockN:", dataBlockN, "   new:", dataBlockN2)
 	return true
 }
 
@@ -50,7 +54,11 @@ func (L *FSLog) LenInBlock() (int, int, int, int) {
 		inodeMapN++
 	}
 
-	inodeBlockN = inodeBlockN/Setting.INodePerBlock + (inodeBlockN%Setting.INodePerBlock)%2
+	if inodeBlockN%Setting.INodePerBlock != 0 {
+		inodeBlockN = inodeBlockN/Setting.INodePerBlock + 1
+	} else {
+		inodeBlockN = inodeBlockN / Setting.INodePerBlock
+	}
 
 	for _, v := range L.data {
 		dataBlockN += len(v)
@@ -65,6 +73,8 @@ func (L *FSLog) Log2DiskBlock(start int, inodeMap map[int]BlockLayer.INodeMap) (
 	segHead.InodeMapN, segHead.InodeBlockN, segHead.DataBlockN, _ = L.LenInBlock()
 
 	var dataBlock []DiskLayer.Block
+
+	//fmt.Println("segHead.DataBlockN:", segHead.DataBlockN)
 
 	for iv, v := range L.inodeByImap {
 		for in, n := range v {
@@ -95,6 +105,15 @@ func (L *FSLog) Log2DiskBlock(start int, inodeMap map[int]BlockLayer.INodeMap) (
 			(iPart.InodeMapPart)[n.InodeN%Setting.InodePerInodemapBlock] = len(nodesByBlock) - 1 + start + 1 + segHead.InodeMapN
 			inodeMap[n.InodeN/Setting.InodePerInodemapBlock] = iPart
 		}
+	}
+	//_, InodeBlockN233, _, _ := L.LenInBlock()
+	if len(nodesByBlock) != segHead.InodeBlockN {
+
+		log.Println(len(nodesByBlock))
+		log.Println(segHead.InodeBlockN)
+		//log.Println(InodeBlockN233)
+		log.Println(L.inodeByImap)
+		log.Fatal("Mismatch!")
 	}
 
 	var imapBlock []BlockLayer.INodeMap
@@ -132,4 +151,10 @@ func (L *FSLog) IsINodeInLog(n int) bool {
 		}
 	}
 	return false
+}
+
+// ///////////////////////////////////////////////////////////////////////////
+// ///// FOR TEST
+func (L *FSLog) PrintLog() {
+	fmt.Println(L)
 }
