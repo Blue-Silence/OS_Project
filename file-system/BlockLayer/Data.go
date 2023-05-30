@@ -1,4 +1,6 @@
-package main
+package BlockLayer
+
+import "LSF/Setting"
 
 const MaxEditBlcokN int = 100
 
@@ -11,70 +13,57 @@ const (
 
 type SuperBlock struct {
 	//newestSegHead int
-	iNodeMaps [MaxINodemapPartN]int
-	bitMap    [BlockN]bool
+	INodeMaps [Setting.MaxINodemapPartN]int
+	BitMap    [Setting.BlockN]bool
 } //store at separate location.
 
 type INodeMap struct {
-	offset       int
-	inodeMapPart [InodePerInodemapBlock]int
+	Offset       int
+	InodeMapPart [Setting.InodePerInodemapBlock]int
 } // 1 per block
 
 type SegHead struct {
-	segLen           int // total len in block size.
-	inodeMapN        int
-	inodeBlockN      int
-	dataBlockN       int
-	dataBlockSummary [MaxEditBlcokN]FileIndexInfo
+	SegLen           int // total len in block size.
+	InodeMapN        int
+	InodeBlockN      int
+	DataBlockN       int
+	DataBlockSummary [MaxEditBlcokN]FileIndexInfo
 } // 1 per block
 
-func (s SegHead) len() int {
-	return s.inodeBlockN + s.inodeMapN + s.dataBlockN + 1
+func (s SegHead) Len() int {
+	return s.InodeBlockN + s.InodeMapN + s.DataBlockN + 1
 }
 
 type FileIndexInfo struct {
-	inodeN int
-	index  int
+	InodeN int
+	Index  int
 }
 
 type INode struct {
-	valid    bool
-	inodeN   int
-	name     string
-	fileType int
-	pointers [10]int
+	Valid    bool
+	InodeN   int
+	Name     string
+	FileType int
+	Pointers [10]int
 }
 
 type INodeBlock struct {
-	nodeArr [INodePerBlock]INode
+	NodeArr [Setting.INodePerBlock]INode
 } // 1 per block
 
 type DataBlock struct {
-	data [BlockSize]uint8
+	Data [Setting.BlockSize]uint8
 } // 1 per block
 
-type FolderBlock struct {
-	names   [BlockSize / 256]string
-	inodeNs [BlockSize / 256]int
-} // 1 per block
-
-type Block interface {
-	//toStore() string
-	//fromStore(string) Block
-	canBeBlock()
+func (s SuperBlock) CanBeBlock() {
 }
-
-func (s SuperBlock) canBeBlock() {
+func (s SegHead) CanBeBlock() {
 }
-func (s SegHead) canBeBlock() {
+func (s INodeMap) CanBeBlock() {
 }
-func (s INodeMap) canBeBlock() {
+func (s INodeBlock) CanBeBlock() {
 }
-func (s INodeBlock) canBeBlock() {
-}
-func (s DataBlock) canBeBlock() {
-}
-func (s FolderBlock) canBeBlock() {
+func (s DataBlock) CanBeBlock() {
 }
 
 /*

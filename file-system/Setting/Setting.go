@@ -1,4 +1,4 @@
-package main
+package Setting
 
 // Block size = 4KB
 const BlockSize int = 4 * 1024
