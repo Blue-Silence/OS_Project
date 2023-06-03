@@ -131,6 +131,11 @@ func (fs *BlockFS) Init(VD DiskLayer.VirtualDisk) {
 	fs.VD.WriteSuperBlock(fs.superBlock.ToBlocks())
 }
 
+func (fs *BlockFS) Load(VD DiskLayer.VirtualDisk) {
+	fs.VD = VD
+	fs.superBlock = fs.superBlock.FromBlocks(VD.ReadSuperBlock())
+}
+
 /////////////////////////////////////////////////
 
 func (fs *BlockFS) SuperBlockUNsafe() SuperBlock {

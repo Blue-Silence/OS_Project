@@ -35,6 +35,11 @@ func (afs *AppFS) FormatFS(VD DiskLayer.VirtualDisk) {
 	afs.fLog.InitLog()
 }
 
+func (afs *AppFS) LoadFS(VD DiskLayer.VirtualDisk) {
+	afs.fLog.InitLog()
+	afs.blockFs.Load(VD)
+}
+
 func createInode(fType int, name string, valid bool, inodeN int) BlockLayer.INode {
 	in := BlockLayer.INode{Valid: valid, FileType: fType, Name: name, InodeN: inodeN}
 	for i, _ := range in.Pointers {
