@@ -12,5 +12,5 @@ const BlockN int = 1024 * 1024
 const (
 	BitPerBitmapBlock     int = BlockSize * 8
 	INodePerBlock         int = BlockSize / INodeSize
-	InodePerInodemapBlock int = BlockSize / 4
+	InodePerInodemapBlock int = BlockSize/4 - 128
 )

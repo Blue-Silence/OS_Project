@@ -70,6 +70,7 @@ func (s INodeMap) ToBlock() *DiskLayer.RealBlock {
 	if buf.Len() > Setting.BlockSize {
 		log.Fatal("INodeMap is too big to be a block.Need filesystem adjustment.")
 	}
+	log.Println("INodeMap size is:", buf.Len())
 	return DiskLayer.BytesToBlock(buf.Bytes())
 }
 

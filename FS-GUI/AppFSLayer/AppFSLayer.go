@@ -5,6 +5,7 @@ import (
 	"LSF/DiskLayer"
 	"LSF/LogLayer"
 	"LSF/Setting"
+	"fmt"
 
 	//"fmt"
 
@@ -81,6 +82,8 @@ func (afs *AppFS) LogCommitWithINMap(imapNeeded map[int]BlockLayer.INodeMap) {
 }
 
 func (afs *AppFS) LogCommit() {
+	fmt.Println("Commiting!")
+	//debug.PrintStack()
 	afs.LogCommitWithINMap(make(map[int]BlockLayer.INodeMap))
 }
 
@@ -151,14 +154,28 @@ func (afs *AppFS) DeleteFile(inodeN int) {
 
 func (afs *AppFS) DeleteBlockInFile(inodeN int, index []int) {
 	inode := afs.GetFileINfo(inodeN)
+	inodeDels := make(map[int]BlockLayer.INode)
 	for _, ind := range index {
 		b, _, traces := afs.findBlockFromStart(false, inodeN, ind)
 		if b {
 			inode = afs.GetFileINfo(traces[len(traces)-1].inode.InodeN)
-			inode.Pointers[traces[len(traces)-1].offset] = -1
-			afs.tryLog([]BlockLayer.INode{inode}, []LogLayer.DataBlockMem{})
+			_, ok := inodeDels[inode.InodeN]
+			if !ok {
+				inode.Pointers[traces[len(traces)-1].offset] = -1
+				inodeDels[inode.InodeN] = inode
+			} else {
+				inode = inodeDels[inode.InodeN]
+				inode.Pointers[traces[len(traces)-1].offset] = -1
+				inodeDels[inode.InodeN] = inode
+			}
+			//inode.Pointers[traces[len(traces)-1].offset] = -1
 		}
 	}
+	inodeLt := []BlockLayer.INode{}
+	for _, v := range inodeDels {
+		inodeLt = append(inodeLt, v)
+	}
+	afs.tryLog(inodeLt, []LogLayer.DataBlockMem{})
 }
 
 func (afs *AppFS) tryLog(inodes []BlockLayer.INode, ds []LogLayer.DataBlockMem) {

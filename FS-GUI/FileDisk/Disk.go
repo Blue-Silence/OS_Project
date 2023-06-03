@@ -3,6 +3,7 @@ package FileDisk
 import (
 	"LSF/DiskLayer"
 	"LSF/Setting"
+	"fmt"
 	"log"
 	"os"
 	"runtime/debug"
@@ -57,6 +58,7 @@ func (d *FileDisk) ReadSuperBlock() []*DiskLayer.RealBlock {
 }
 
 func (d *FileDisk) WriteSuperBlock(b []*DiskLayer.RealBlock) {
+	fmt.Println("Writing super block!")
 	bs := []byte{}
 	for _, v := range b {
 		bs = append(bs, DiskLayer.BlockToBytes(v)...)

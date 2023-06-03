@@ -31,6 +31,8 @@ func (L *FSLog) InitLog() {
 }
 
 func (L *FSLog) ConstructLog(inodes []BlockLayer.INode, ds []DataBlockMem) bool {
+	//debug.PrintStack()
+	//log.Println("Adding log inodes:", inodes)
 	_, _, dataBlockN, _ := L.LenInBlock()
 	if len(ds)+dataBlockN > BlockLayer.MaxEditBlcokN {
 		return false
@@ -41,10 +43,7 @@ func (L *FSLog) ConstructLog(inodes []BlockLayer.INode, ds []DataBlockMem) bool 
 	}
 	for _, v := range ds {
 		L.data[v.Inode] = append(L.data[v.Inode], v)
-		//fmt.Printf("inode:%v index:%v\n", v.Inode, v.Index)
 	}
-	//_, _, dataBlockN2, _ := L.LenInBlock()
-	//fmt.Println("AAA DataBlockN:", dataBlockN, "   new:", dataBlockN2)
 	return true
 }
 
@@ -172,6 +171,7 @@ func (L *FSLog) ImapNeeded() []int {
 func (L *FSLog) IsINodeInLog(n int) bool {
 	for _, v := range L.inodeByImap[n/Setting.InodePerInodemapBlock] {
 		if v.InodeN == n {
+			log.Println("Inode in log:", n)
 			return true
 		}
 	}
