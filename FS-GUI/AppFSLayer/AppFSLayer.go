@@ -24,9 +24,9 @@ func (afs *AppFS) FormatFS(VD DiskLayer.VirtualDisk) {
 	afs.blockFs.Init(VD)
 
 	initINodes := []BlockLayer.INode{createInode(BlockLayer.Folder, "", true, 0)} //Adding root
-	for i := 1; i < Setting.MaxInodeN; i++ {
+	/*for i := 1; i < Setting.MaxInodeN; i++ {
 		initINodes = append(initINodes, createInode(BlockLayer.NormalFile, "", false, i)) //Adding invalid inodes to init imap
-	}
+	}*/
 	afs.fLog.ConstructLog(initINodes, []LogLayer.DataBlockMem{})
 	_, _, _, initSegLen := afs.fLog.LenInBlock()
 	initStart := afs.blockFs.FindSpaceForSeg(initSegLen)
@@ -128,7 +128,7 @@ func (afs *AppFS) WriteFile(inodeN int, index []int, data []DiskLayer.Block) {
 	}
 }
 
-func (afs *AppFS) ReadFile(inodeN int, index int) DiskLayer.RealBlock {
+func (afs *AppFS) ReadFile(inodeN int, index int) *DiskLayer.RealBlock {
 	b, _, traces := afs.findBlockFromStart(false, inodeN, index)
 	if b && traces[len(traces)-1].offset >= 0 {
 		inode := afs.GetFileINfo(traces[len(traces)-1].inode.InodeN)
@@ -136,7 +136,7 @@ func (afs *AppFS) ReadFile(inodeN int, index int) DiskLayer.RealBlock {
 		return afs.blockFs.ReadFile(inode.InodeN, traces[len(traces)-1].offset)
 	} else {
 		var e DiskLayer.RealBlock
-		return e
+		return &e
 	}
 }
 

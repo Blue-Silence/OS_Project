@@ -11,14 +11,14 @@ type BlockFS struct {
 	VD         DiskLayer.VirtualDisk
 } //This is the file system data structure in memory
 
-func (fs *BlockFS) ReadFile(inodeN int, index int) DiskLayer.RealBlock {
+func (fs *BlockFS) ReadFile(inodeN int, index int) *DiskLayer.RealBlock {
 	inode := fs.INodeN2iNode(inodeN)
 	if inode.Valid == false {
 		log.Fatal("No Valid inode found for:", inodeN)
 	}
 	if inode.Pointers[index] < 0 {
 		var empty DiskLayer.RealBlock
-		return empty
+		return &empty
 	}
 	return fs.VD.ReadBlock(inode.Pointers[index])
 }
@@ -36,7 +36,9 @@ func (fs *BlockFS) INodeN2iNodeAndPointer(n int) (INode, int) {
 	if iNodemap.Index != n/Setting.InodePerInodemapBlock {
 		log.Fatal("Warning!Mistmatch!")
 	}
-
+	if iNodeBlockN < 0 {
+		return INode{Valid: false}, -1
+	}
 	var nB INodeBlock = INodeBlock{}.FromBlock((fs.VD.ReadBlock(iNodeBlockN))).(INodeBlock)
 	for _, v := range nB.NodeArr {
 		if v.Valid && v.InodeN == n {

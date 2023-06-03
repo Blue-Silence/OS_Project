@@ -15,7 +15,7 @@ const LogLenth = 200
 type DataBlockMem struct {
 	Inode int
 	Index int
-	Data  DiskLayer.RealBlock
+	Data  *DiskLayer.RealBlock
 }
 
 type FSLog struct {
@@ -90,7 +90,7 @@ func (L *FSLog) Log2DiskBlock(start int, inodeMap map[int]BlockLayer.INodeMap) (
 		segHead.InodeMapN++
 	} //This way we will get the real length of InodeMap block
 
-	var dataBlock []DiskLayer.Block
+	var dataBlock []*DiskLayer.Block
 
 	//fmt.Println("segHead.DataBlockN:", segHead.DataBlockN)
 
@@ -99,7 +99,8 @@ func (L *FSLog) Log2DiskBlock(start int, inodeMap map[int]BlockLayer.INodeMap) (
 			//fmt.Println("\nInode:", n.InodeN, "    dataBlock num:", len(L.data[n.InodeN]))
 
 			for _, dataB := range L.data[n.InodeN] {
-				dataBlock = append(dataBlock, BlockLayer.DataBlock{dataB.Data})
+				var tempD DiskLayer.Block = BlockLayer.DataBlock{dataB.Data}
+				dataBlock = append(dataBlock, &tempD)
 				segHead.DataBlockSummary[len(dataBlock)-1] = BlockLayer.FileIndexInfo{n.InodeN, dataB.Index}
 				n.Pointers[dataB.Index] = start + 1 + segHead.InodeMapN + segHead.InodeBlockN + len(dataBlock) - 1
 				L.inodeByImap[iv][in] = n
@@ -119,7 +120,12 @@ func (L *FSLog) Log2DiskBlock(start int, inodeMap map[int]BlockLayer.INodeMap) (
 			nodesByBlock[len(nodesByBlock)-1].NodeArr[nodeCount] = n
 			nodeCount++
 			//and also do something to change imap next (TO BE DONE)
-			iPart := inodeMap[n.InodeN/Setting.InodePerInodemapBlock]
+			iPart, ok := inodeMap[n.InodeN/Setting.InodePerInodemapBlock]
+			if !ok {
+				for i, _ := range iPart.InodeMapPart {
+					iPart.InodeMapPart[i] = -1
+				}
+			}
 			iPart.Index = n.InodeN / Setting.InodePerInodemapBlock
 			(iPart.InodeMapPart)[n.InodeN%Setting.InodePerInodemapBlock] = len(nodesByBlock) - 1 + start + 1 + segHead.InodeMapN
 			inodeMap[n.InodeN/Setting.InodePerInodemapBlock] = iPart
@@ -150,7 +156,7 @@ func (L *FSLog) Log2DiskBlock(start int, inodeMap map[int]BlockLayer.INodeMap) (
 		re = append(re, v)
 	}
 	for _, v := range dataBlock {
-		re = append(re, v)
+		re = append(re, *v)
 	}
 	return re, returnMap
 }

@@ -8,7 +8,7 @@ import (
 	"log"
 )
 
-func (s FolderBlock) ToBlock() DiskLayer.RealBlock {
+func (s FolderBlock) ToBlock() *DiskLayer.RealBlock {
 	var buf bytes.Buffer
 	enc := gob.NewEncoder(&buf)
 	err := enc.Encode(s)
@@ -21,7 +21,7 @@ func (s FolderBlock) ToBlock() DiskLayer.RealBlock {
 	return DiskLayer.BytesToBlock(buf.Bytes())
 }
 
-func (s FolderBlock) FromBlock(d DiskLayer.RealBlock) DiskLayer.Block {
+func (s FolderBlock) FromBlock(d *DiskLayer.RealBlock) DiskLayer.Block {
 	bufP := bytes.NewBuffer(DiskLayer.BlockToBytes(d))
 	dec := gob.NewDecoder(bufP)
 	err := dec.Decode(&s)

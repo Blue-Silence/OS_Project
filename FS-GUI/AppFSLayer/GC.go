@@ -64,7 +64,7 @@ func (afs *AppFS) GC(maxSegCount int) int {
 
 		segHead := BlockLayer.SegHead{}.FromBlock(afs.blockFs.VD.ReadBlock(hP)).(BlockLayer.SegHead)
 		segLen := LogLayer.SegLenFromHead(segHead)
-		segBs := []DiskLayer.RealBlock{}
+		segBs := []*DiskLayer.RealBlock{}
 		scanStart = hP + segLen
 		for i := 0; i < segLen; i++ {
 			segBs = append(segBs, afs.blockFs.VD.ReadBlock(hP+i))

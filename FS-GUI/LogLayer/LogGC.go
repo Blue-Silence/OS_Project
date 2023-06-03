@@ -13,7 +13,7 @@ func SegLenFromHead(s BlockLayer.SegHead) int {
 	return 1 + s.InodeMapN + s.InodeBlockN + s.DataBlockN
 }
 
-func ReConstructLog(start int, segB []DiskLayer.RealBlock) (map[int]BlockLayer.INodeMap, map[int]([]BlockLayer.INode), map[int]DataBlockMem) {
+func ReConstructLog(start int, segB []*DiskLayer.RealBlock) (map[int]BlockLayer.INodeMap, map[int]([]BlockLayer.INode), map[int]DataBlockMem) {
 	inodeMap := make(map[int]BlockLayer.INodeMap)
 	inodes := make(map[int]([]BlockLayer.INode))
 	dataBs := make(map[int]DataBlockMem)

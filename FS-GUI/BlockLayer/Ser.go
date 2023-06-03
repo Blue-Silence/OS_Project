@@ -10,7 +10,7 @@ import (
 	"runtime/debug"
 )
 
-func (s SuperBlock) ToBlocks() []DiskLayer.RealBlock {
+func (s SuperBlock) ToBlocks() []*DiskLayer.RealBlock {
 	var buf bytes.Buffer
 	enc := gob.NewEncoder(&buf)
 	err := enc.Encode(s)
@@ -20,7 +20,7 @@ func (s SuperBlock) ToBlocks() []DiskLayer.RealBlock {
 	return DiskLayer.BytesToBlocks(buf.Bytes())
 }
 
-func (s SuperBlock) FromBlocks(ds []DiskLayer.RealBlock) SuperBlock {
+func (s SuperBlock) FromBlocks(ds []*DiskLayer.RealBlock) SuperBlock {
 	d := []byte{}
 	for _, v := range ds {
 		d = append(d, DiskLayer.BlockToBytes(v)...)
@@ -36,7 +36,7 @@ func (s SuperBlock) FromBlocks(ds []DiskLayer.RealBlock) SuperBlock {
 	return s
 }
 
-func (s SegHead) ToBlock() DiskLayer.RealBlock {
+func (s SegHead) ToBlock() *DiskLayer.RealBlock {
 	var buf bytes.Buffer
 	enc := gob.NewEncoder(&buf)
 	err := enc.Encode(s)
@@ -49,7 +49,7 @@ func (s SegHead) ToBlock() DiskLayer.RealBlock {
 	return DiskLayer.BytesToBlock(buf.Bytes())
 }
 
-func (s SegHead) FromBlock(d DiskLayer.RealBlock) DiskLayer.Block {
+func (s SegHead) FromBlock(d *DiskLayer.RealBlock) DiskLayer.Block {
 	bufP := bytes.NewBuffer(DiskLayer.BlockToBytes(d))
 	dec := gob.NewDecoder(bufP)
 	err := dec.Decode(&s)
@@ -60,7 +60,7 @@ func (s SegHead) FromBlock(d DiskLayer.RealBlock) DiskLayer.Block {
 	return s
 }
 
-func (s INodeMap) ToBlock() DiskLayer.RealBlock {
+func (s INodeMap) ToBlock() *DiskLayer.RealBlock {
 	var buf bytes.Buffer
 	enc := gob.NewEncoder(&buf)
 	err := enc.Encode(s)
@@ -73,7 +73,7 @@ func (s INodeMap) ToBlock() DiskLayer.RealBlock {
 	return DiskLayer.BytesToBlock(buf.Bytes())
 }
 
-func (s INodeMap) FromBlock(d DiskLayer.RealBlock) DiskLayer.Block {
+func (s INodeMap) FromBlock(d *DiskLayer.RealBlock) DiskLayer.Block {
 	bufP := bytes.NewBuffer(DiskLayer.BlockToBytes(d))
 	dec := gob.NewDecoder(bufP)
 	err := dec.Decode(&s)
@@ -84,7 +84,7 @@ func (s INodeMap) FromBlock(d DiskLayer.RealBlock) DiskLayer.Block {
 	return s
 }
 
-func (s INodeBlock) ToBlock() DiskLayer.RealBlock {
+func (s INodeBlock) ToBlock() *DiskLayer.RealBlock {
 	var buf bytes.Buffer
 	enc := gob.NewEncoder(&buf)
 	err := enc.Encode(s)
@@ -97,7 +97,7 @@ func (s INodeBlock) ToBlock() DiskLayer.RealBlock {
 	return DiskLayer.BytesToBlock(buf.Bytes())
 }
 
-func (s INodeBlock) FromBlock(d DiskLayer.RealBlock) DiskLayer.Block {
+func (s INodeBlock) FromBlock(d *DiskLayer.RealBlock) DiskLayer.Block {
 	bufP := bytes.NewBuffer(DiskLayer.BlockToBytes(d))
 	dec := gob.NewDecoder(bufP)
 	err := dec.Decode(&s)
@@ -108,11 +108,15 @@ func (s INodeBlock) FromBlock(d DiskLayer.RealBlock) DiskLayer.Block {
 	return s
 }
 
-func (s DataBlock) ToBlock() DiskLayer.RealBlock {
+func (s DataBlock) ToBlock() *DiskLayer.RealBlock {
 	return DiskLayer.BytesToBlock(s.Data[:])
 }
 
-func (s DataBlock) FromBlock(d DiskLayer.RealBlock) DiskLayer.Block {
-	copy(s.Data[:], DiskLayer.BlockToBytes(d))
+func (s DataBlock) FromBlock(d *DiskLayer.RealBlock) DiskLayer.Block {
+	//log.Println("1111111111111    d:", d)
+	var b [Setting.BlockSize]byte
+	copy(b[:], DiskLayer.BlockToBytes(d))
+	//log.Println("23333333333")
+	s.Data = &b
 	return s
 }

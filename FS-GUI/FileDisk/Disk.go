@@ -26,7 +26,7 @@ func (d *FileDisk) Init(blocksFilePath, superBlockFilePath string) {
 	}
 }
 
-func (d *FileDisk) ReadBlock(index int) DiskLayer.RealBlock {
+func (d *FileDisk) ReadBlock(index int) *DiskLayer.RealBlock {
 	if index < 0 || index > Setting.BlockN {
 		debug.PrintStack()
 		log.Fatal("Invalid disk read access at ", index)
@@ -34,7 +34,7 @@ func (d *FileDisk) ReadBlock(index int) DiskLayer.RealBlock {
 	var b DiskLayer.RealBlock
 	d.blocksFile.ReadAt(b[:], int64(index)*int64(Setting.BlockSize))
 	//log.Println("Block.Read at", index, " n:", n, "  err:", err)
-	return b
+	return &b
 }
 
 func (d *FileDisk) WriteBlock(index int, b DiskLayer.Block) {
@@ -48,7 +48,7 @@ func (d *FileDisk) WriteBlock(index int, b DiskLayer.Block) {
 	//log.Println("Block.Write at", index, " n:", n, "  err:", err)
 }
 
-func (d *FileDisk) ReadSuperBlock() []DiskLayer.RealBlock {
+func (d *FileDisk) ReadSuperBlock() []*DiskLayer.RealBlock {
 	data := make([]byte, 4096*Setting.BlockSize)
 	d.superBlockFile.ReadAt(data, 0)
 	//log.Println("Superblock.Read n:", n, "  err:", err)
@@ -56,7 +56,7 @@ func (d *FileDisk) ReadSuperBlock() []DiskLayer.RealBlock {
 	return (DiskLayer.BytesToBlocks(data))
 }
 
-func (d *FileDisk) WriteSuperBlock(b []DiskLayer.RealBlock) {
+func (d *FileDisk) WriteSuperBlock(b []*DiskLayer.RealBlock) {
 	bs := []byte{}
 	for _, v := range b {
 		bs = append(bs, DiskLayer.BlockToBytes(v)...)

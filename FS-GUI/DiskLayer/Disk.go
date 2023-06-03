@@ -6,32 +6,32 @@ import (
 )
 
 type VirtualDisk interface {
-	ReadBlock(index int) RealBlock
+	ReadBlock(index int) *RealBlock
 	WriteBlock(index int, b Block)
-	ReadSuperBlock() []RealBlock
-	WriteSuperBlock(b []RealBlock)
+	ReadSuperBlock() []*RealBlock
+	WriteSuperBlock(b []*RealBlock)
 }
 
 type Block interface {
 	CanBeBlock()
-	ToBlock() RealBlock
-	FromBlock(RealBlock) Block
+	ToBlock() *RealBlock
+	FromBlock(*RealBlock) Block
 }
 
 type RealBlock = [Setting.BlockSize]byte
 
-func BytesToBlock(d []byte) RealBlock {
+func BytesToBlock(d []byte) *RealBlock {
 	var b RealBlock
 	if len(d) > Setting.BlockSize {
 		log.Fatal("Too big to be a block.")
 	}
 	copy(b[:], d)
-	return b
+	return &b
 }
 
-func BytesToBlocks(d []byte) []RealBlock {
+func BytesToBlocks(d []byte) []*RealBlock {
 	dN := d[:]
-	bs := []RealBlock{}
+	bs := []*RealBlock{}
 	for len(dN) > Setting.BlockSize {
 		bs = append(bs, BytesToBlock(dN[:Setting.BlockSize]))
 		dN = dN[Setting.BlockSize:]
@@ -42,6 +42,6 @@ func BytesToBlocks(d []byte) []RealBlock {
 	return bs
 }
 
-func BlockToBytes(b RealBlock) []byte {
+func BlockToBytes(b *RealBlock) []byte {
 	return b[:]
 }

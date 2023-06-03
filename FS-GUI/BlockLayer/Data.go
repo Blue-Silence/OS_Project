@@ -57,7 +57,7 @@ type INodeBlock struct {
 } // 1 per block
 
 type DataBlock struct {
-	Data [Setting.BlockSize]uint8
+	Data *[Setting.BlockSize]uint8
 } // 1 per block
 
 func (s SuperBlock) CanBeBlock() {

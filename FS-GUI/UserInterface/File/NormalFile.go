@@ -15,7 +15,7 @@ func Write(afs *AppFSLayer.AppFS, h FileHandler, index int, data [Setting.BlockS
 	if hN.FileType != BlockLayer.NormalFile {
 		return "Can't read this type of file."
 	}
-	afs.WriteFile(h.inode, []int{index}, []DiskLayer.Block{BlockLayer.DataBlock{data}})
+	afs.WriteFile(h.inode, []int{index}, []DiskLayer.Block{BlockLayer.DataBlock{&data}})
 	return ""
 }
 
@@ -27,7 +27,7 @@ func Read(afs *AppFSLayer.AppFS, h FileHandler, index int) (string, [Setting.Blo
 	if hN.FileType != BlockLayer.NormalFile {
 		return "Can't read this type of file.", [Setting.BlockSize]uint8{}
 	}
-	return "", BlockLayer.DataBlock{}.FromBlock(afs.ReadFile(h.inode, index)).(BlockLayer.DataBlock).Data
+	return "", *BlockLayer.DataBlock{}.FromBlock(afs.ReadFile(h.inode, index)).(BlockLayer.DataBlock).Data
 }
 
 func DeleteBlock(afs *AppFSLayer.AppFS, h FileHandler, index []int) string {

@@ -39,8 +39,8 @@ func main() {
 	disk := FileDisk.FileDisk{}
 	disk.Init("NormalBlock", "SuperBlock")
 	defer disk.Close()
-	//afs.FormatFS(&disk) //File system init.
-	afs.LoadFS(&disk)
+	afs.FormatFS(&disk) //File system init.
+	//afs.LoadFS(&disk)
 
 	a := app.New()
 	w := a.NewWindow("File Manager")
