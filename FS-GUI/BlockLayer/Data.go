@@ -1,6 +1,9 @@
 package BlockLayer
 
-import "LSF/Setting"
+import (
+	"LSF/Setting"
+	"time"
+)
 
 const MaxEditBlcokN int = 100
 const DirectPointerPerINode = 10
@@ -42,6 +45,7 @@ type FileIndexInfo struct {
 
 type INode struct {
 	Valid    bool
+	ModTime  time.Time
 	InodeN   int
 	Name     string
 	FileType int

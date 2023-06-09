@@ -6,6 +6,7 @@ import (
 	"LSF/LogLayer"
 	"LSF/Setting"
 	"fmt"
+	"time"
 
 	//"fmt"
 
@@ -42,7 +43,7 @@ func (afs *AppFS) LoadFS(VD DiskLayer.VirtualDisk) {
 }
 
 func createInode(fType int, name string, valid bool, inodeN int) BlockLayer.INode {
-	in := BlockLayer.INode{Valid: valid, FileType: fType, Name: name, InodeN: inodeN}
+	in := BlockLayer.INode{Valid: valid, FileType: fType, Name: name, InodeN: inodeN, ModTime: time.Now()}
 	for i, _ := range in.Pointers {
 		in.Pointers[i] = -1 //Init to invalid pointers
 	}
@@ -127,6 +128,7 @@ func (afs *AppFS) WriteFile(inodeN int, index []int, data []DiskLayer.Block) {
 	for i, ind := range index {
 		_, _, traces := afs.findBlockFromStart(true, inodeN, ind)
 		inode := afs.GetFileINfo(traces[len(traces)-1].inode.InodeN)
+		inode.ModTime = time.Now()
 		afs.tryLog([]BlockLayer.INode{inode}, []LogLayer.DataBlockMem{LogLayer.DataBlockMem{Inode: inode.InodeN, Index: traces[len(traces)-1].offset, Data: data[i].ToBlock()}})
 	}
 }
@@ -154,7 +156,9 @@ func (afs *AppFS) DeleteFile(inodeN int) {
 
 func (afs *AppFS) DeleteBlockInFile(inodeN int, index []int) {
 	inode := afs.GetFileINfo(inodeN)
+	inode.ModTime = time.Now()
 	inodeDels := make(map[int]BlockLayer.INode)
+	inodeDels[inode.InodeN] = inode
 	for _, ind := range index {
 		b, _, traces := afs.findBlockFromStart(false, inodeN, ind)
 		if b {

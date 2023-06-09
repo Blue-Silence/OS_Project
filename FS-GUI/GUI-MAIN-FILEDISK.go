@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"log"
 	"path/filepath"
+	"time"
 
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
@@ -21,9 +22,9 @@ import (
 )
 
 type File struct {
-	Name  string
-	IsDir bool
-	//FileInfo os.FileInfo
+	Name    string
+	IsDir   bool
+	ModTime time.Time
 }
 
 var afs AppFSLayer.AppFS
@@ -37,9 +38,31 @@ var (
 func main() {
 
 	disk := FileDisk.FileDisk{}
-	disk.Init("NormalBlock", "SuperBlock")
+	nF := ""
+	sF := ""
+	fmt.Printf("Please enter the file as the normal block storage[Default:./NormalBlock]:")
+	fmt.Scanf("%v", nF)
+	fmt.Printf("Please enter the file as the super block storage[Default:./SuperBlock]:")
+	fmt.Scanf("%v", sF)
+	if nF == "" {
+		nF = "NormalBlock"
+	}
+	if sF == "" {
+		sF = "SuperBlock"
+	}
+	disk.Init(nF, sF)
+	fmt.Printf("Do you want to reformat the disk?[Y/N][Default:N]:")
+	c := 'a'
+	r, err := fmt.Scanf("%c", &c)
+	fmt.Println("c:", c, "*", " r:", r, " err:", err)
+	if c == 'Y' || c == 'y' {
+		afs.FormatFS(&disk)
+	} else {
+		afs.LoadFS(&disk)
+	}
+
 	defer disk.Close()
-	afs.FormatFS(&disk) //File system init.
+	//File system init.
 	//afs.LoadFS(&disk)
 
 	a := app.New()
@@ -72,11 +95,6 @@ func main() {
 	toolbar := widget.NewToolbar(
 		widget.NewToolbarAction(theme.FolderOpenIcon(), func() {
 			// 打开文件夹
-			log.Println("Open folder")
-			FolderDialog(w, list, currentPathLabel)
-		}),
-		widget.NewToolbarAction(theme.FolderOpenIcon(), func() {
-			// 打开文件夹
 			currentPath = filepath.Dir(currentPath)
 			log.Println("Open folder:", currentPath)
 			updateFileList(list, currentPathLabel)
@@ -98,6 +116,9 @@ func main() {
 		}),
 		widget.NewToolbarAction(theme.ConfirmIcon(), func() {
 			// 打开或查看文件
+			if selectedFileIdx >= len(files) {
+				return
+			}
 			file := files[selectedFileIdx]
 			if file.IsDir {
 				// 如果选中的是文件夹，则进入文件夹
@@ -145,10 +166,15 @@ func main() {
 		}),
 		widget.NewToolbarAction(theme.InfoIcon(), func() {
 			// 查看文件属性
+			updateFileList(list, currentPathLabel)
 			if selectedFileIdx >= 0 && selectedFileIdx < len(files) {
 				file := files[selectedFileIdx]
 				showFilePropertiesDialog(w, file)
 			}
+		}),
+		widget.NewToolbarAction(theme.CheckButtonCheckedIcon(), func() {
+			// 查看文件属性
+			FF.Flush(&afs)
 		}),
 	)
 
@@ -192,7 +218,10 @@ func updateFileList(list *widget.List, currentPathLabel *widget.Label) {
 		file := File{
 			Name: fileInfo.Name,
 			//IsDir: fileInfo.FileType,
-			//FileInfo: fileInfo,
+			ModTime: fileInfo.ModTime,
+		}
+		if fileInfo.FileType == BlockLayer.Folder {
+			file.IsDir = true
 		}
 		if fileInfo.FileType == BlockLayer.Folder {
 			file.IsDir = true
@@ -306,8 +335,12 @@ func showFilePropertiesDialog(w fyne.Window, file File) {
 
 	properties += fmt.Sprintf("Name: %s\n", file.Name)
 	//properties += fmt.Sprintf("Size: %d bytes\n", file.FileInfo.Size())
-	//properties += fmt.Sprintf("Modified: %s\n", file.FileInfo.ModTime())
-	//properties += fmt.Sprintf("Permissions: %s\n", file.FileInfo.Mode().Perm())
+	properties += fmt.Sprintf("Modified: %s\n", file.ModTime)
+	if file.IsDir {
+		properties += fmt.Sprintf("Type: Dir\n")
+	} else {
+		properties += fmt.Sprintf("Type: Normal File\n")
+	}
 
 	dialog.ShowInformation("File Properties", properties, w)
 }

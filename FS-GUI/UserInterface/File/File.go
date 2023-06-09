@@ -50,6 +50,7 @@ func GetInfo(afs *AppFSLayer.AppFS, h FileHandler) (string, FileInfo) {
 	info.Name = hN.Name
 	info.FileType = hN.FileType
 	info.Handler = FileHandler{hN.InodeN}
+	info.ModTime = hN.ModTime
 	for i, v := range hN.Pointers {
 		if v > 0 {
 			info.AllocatedBlock = append(info.AllocatedBlock, i)
