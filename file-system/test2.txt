@@ -1,0 +1,547 @@
+Test: 0
+-----------------------Before adding file.----------------------------------
+Max i to: 0
+map[]
+-----------------------After adding 3 file.----------------------------------
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Max i to: 0
+Before adding: []
+Test: 0
+Seriously?
+Test: 1
+Max i to: 0
+Before adding: [{Normal file 1 1 true}]
+Test: 0
+Seriously?
+Test: 1
+Max i to: 0
+Before adding: [{Normal file 1 1 true} {Folder 2 2 true}]
+Test: 0
+Seriously?
+Test: 1
+Max i to: 0
+map[Folder 2:2 Normal file 1:1 Normal file 3:3]
+Test: 0
+Max i to: 0
+Before adding: []
+Test: 0
+Seriously?
+Test: 1
+Max i to: 0
+Root: map[Folder 2:2 Normal file 1:1 Normal file 3:3]
+Max i to: 0
+Secondary: map[Folder 4:4]
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+Ha?
+Test: 0
+-----------------------Massive test.----------------------------------
+Max i to: 0
+Before adding: [{Folder 4 4 true}]
+Test: 0
+Seriously?
+Test: 1
+Max i to: 0
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true}]
+Test: 0
+Seriously?
+Test: 1
+Max i to: 0
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true}]
+Test: 0
+Seriously?
+Test: 1
+Max i to: 0
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true}]
+Test: 0
+Seriously?
+Test: 1
+Max i to: 0
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true}]
+Test: 0
+Seriously?
+Test: 1
+Max i to: 0
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true}]
+Test: 0
+Seriously?
+Test: 1
+Max i to: 0
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true}]
+Test: 0
+Seriously?
+Test: 1
+Max i to: 0
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true}]
+Test: 0
+Seriously?
+Test: 2
+Max i to: 1
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true}]
+Test: 0
+Seriously?
+Test: 2
+Max i to: 1
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true}]
+Test: 0
+Seriously?
+Test: 2
+Max i to: 1
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true}]
+Test: 0
+Seriously?
+Test: 2
+Max i to: 1
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true}]
+Test: 0
+Seriously?
+Test: 2
+Max i to: 1
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true}]
+Test: 0
+Seriously?
+Test: 2
+Max i to: 1
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true}]
+Test: 0
+Seriously?
+Test: 2
+Max i to: 1
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true}]
+Test: 0
+Seriously?
+Test: 2
+Max i to: 1
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true}]
+Test: 0
+Seriously?
+Test: 3
+Max i to: 2
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true}]
+Test: 0
+Seriously?
+Test: 3
+Max i to: 2
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true}]
+Test: 0
+Seriously?
+Test: 3
+Max i to: 2
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true}]
+Test: 0
+Seriously?
+Test: 3
+Max i to: 2
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true}]
+Test: 0
+Seriously?
+Test: 3
+Max i to: 2
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true}]
+Test: 0
+Seriously?
+Test: 3
+Max i to: 2
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true} {-Normalfile-24 25 true}]
+Test: 0
+Seriously?
+Test: 3
+Max i to: 2
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true} {-Normalfile-24 25 true} {-Normalfile-25 26 true}]
+Test: 0
+Seriously?
+Test: 3
+Max i to: 2
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true} {-Normalfile-24 25 true} {-Normalfile-25 26 true} {-Normalfile-26 27 true}]
+Test: 0
+Seriously?
+Test: 4
+Max i to: 3
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true} {-Normalfile-24 25 true} {-Normalfile-25 26 true} {-Normalfile-26 27 true} {-Normalfile-27 28 true}]
+Test: 0
+Seriously?
+Test: 4
+Max i to: 3
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true} {-Normalfile-24 25 true} {-Normalfile-25 26 true} {-Normalfile-26 27 true} {-Normalfile-27 28 true} {-Normalfile-28 29 true}]
+Test: 0
+Seriously?
+Test: 4
+Max i to: 3
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true} {-Normalfile-24 25 true} {-Normalfile-25 26 true} {-Normalfile-26 27 true} {-Normalfile-27 28 true} {-Normalfile-28 29 true} {-Normalfile-29 30 true}]
+Test: 0
+Seriously?
+Test: 4
+Max i to: 3
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true} {-Normalfile-24 25 true} {-Normalfile-25 26 true} {-Normalfile-26 27 true} {-Normalfile-27 28 true} {-Normalfile-28 29 true} {-Normalfile-29 30 true} {-Normalfile-30 31 true}]
+Test: 0
+Seriously?
+Test: 4
+Max i to: 3
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true} {-Normalfile-24 25 true} {-Normalfile-25 26 true} {-Normalfile-26 27 true} {-Normalfile-27 28 true} {-Normalfile-28 29 true} {-Normalfile-29 30 true} {-Normalfile-30 31 true} {-Normalfile-31 32 true}]
+Test: 0
+Seriously?
+Test: 4
+Max i to: 3
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true} {-Normalfile-24 25 true} {-Normalfile-25 26 true} {-Normalfile-26 27 true} {-Normalfile-27 28 true} {-Normalfile-28 29 true} {-Normalfile-29 30 true} {-Normalfile-30 31 true} {-Normalfile-31 32 true} {-Normalfile-32 33 true}]
+Test: 0
+Seriously?
+Test: 4
+Max i to: 3
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true} {-Normalfile-24 25 true} {-Normalfile-25 26 true} {-Normalfile-26 27 true} {-Normalfile-27 28 true} {-Normalfile-28 29 true} {-Normalfile-29 30 true} {-Normalfile-30 31 true} {-Normalfile-31 32 true} {-Normalfile-32 33 true} {-Normalfile-33 34 true}]
+Test: 0
+Seriously?
+Test: 4
+Max i to: 3
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true} {-Normalfile-24 25 true} {-Normalfile-25 26 true} {-Normalfile-26 27 true} {-Normalfile-27 28 true} {-Normalfile-28 29 true} {-Normalfile-29 30 true} {-Normalfile-30 31 true} {-Normalfile-31 32 true} {-Normalfile-32 33 true} {-Normalfile-33 34 true} {-Normalfile-34 35 true}]
+Test: 0
+Seriously?
+Test: 5
+Max i to: 4
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true} {-Normalfile-24 25 true} {-Normalfile-25 26 true} {-Normalfile-26 27 true} {-Normalfile-27 28 true} {-Normalfile-28 29 true} {-Normalfile-29 30 true} {-Normalfile-30 31 true} {-Normalfile-31 32 true} {-Normalfile-32 33 true} {-Normalfile-33 34 true} {-Normalfile-34 35 true} {-Normalfile-35 36 true}]
+Test: 0
+Seriously?
+Test: 5
+Max i to: 4
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true} {-Normalfile-24 25 true} {-Normalfile-25 26 true} {-Normalfile-26 27 true} {-Normalfile-27 28 true} {-Normalfile-28 29 true} {-Normalfile-29 30 true} {-Normalfile-30 31 true} {-Normalfile-31 32 true} {-Normalfile-32 33 true} {-Normalfile-33 34 true} {-Normalfile-34 35 true} {-Normalfile-35 36 true} {-Normalfile-36 37 true}]
+Test: 0
+Seriously?
+Test: 5
+Max i to: 4
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true} {-Normalfile-24 25 true} {-Normalfile-25 26 true} {-Normalfile-26 27 true} {-Normalfile-27 28 true} {-Normalfile-28 29 true} {-Normalfile-29 30 true} {-Normalfile-30 31 true} {-Normalfile-31 32 true} {-Normalfile-32 33 true} {-Normalfile-33 34 true} {-Normalfile-34 35 true} {-Normalfile-35 36 true} {-Normalfile-36 37 true} {-Normalfile-37 38 true}]
+Test: 0
+Seriously?
+Test: 5
+Max i to: 4
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true} {-Normalfile-24 25 true} {-Normalfile-25 26 true} {-Normalfile-26 27 true} {-Normalfile-27 28 true} {-Normalfile-28 29 true} {-Normalfile-29 30 true} {-Normalfile-30 31 true} {-Normalfile-31 32 true} {-Normalfile-32 33 true} {-Normalfile-33 34 true} {-Normalfile-34 35 true} {-Normalfile-35 36 true} {-Normalfile-36 37 true} {-Normalfile-37 38 true} {-Normalfile-38 39 true}]
+Test: 0
+Seriously?
+Test: 5
+Max i to: 4
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true} {-Normalfile-24 25 true} {-Normalfile-25 26 true} {-Normalfile-26 27 true} {-Normalfile-27 28 true} {-Normalfile-28 29 true} {-Normalfile-29 30 true} {-Normalfile-30 31 true} {-Normalfile-31 32 true} {-Normalfile-32 33 true} {-Normalfile-33 34 true} {-Normalfile-34 35 true} {-Normalfile-35 36 true} {-Normalfile-36 37 true} {-Normalfile-37 38 true} {-Normalfile-38 39 true} {-Normalfile-39 40 true}]
+Test: 0
+Seriously?
+Test: 5
+Max i to: 4
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true} {-Normalfile-24 25 true} {-Normalfile-25 26 true} {-Normalfile-26 27 true} {-Normalfile-27 28 true} {-Normalfile-28 29 true} {-Normalfile-29 30 true} {-Normalfile-30 31 true} {-Normalfile-31 32 true} {-Normalfile-32 33 true} {-Normalfile-33 34 true} {-Normalfile-34 35 true} {-Normalfile-35 36 true} {-Normalfile-36 37 true} {-Normalfile-37 38 true} {-Normalfile-38 39 true} {-Normalfile-39 40 true} {-Normalfile-40 41 true}]
+Test: 0
+Seriously?
+Test: 5
+Max i to: 4
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true} {-Normalfile-24 25 true} {-Normalfile-25 26 true} {-Normalfile-26 27 true} {-Normalfile-27 28 true} {-Normalfile-28 29 true} {-Normalfile-29 30 true} {-Normalfile-30 31 true} {-Normalfile-31 32 true} {-Normalfile-32 33 true} {-Normalfile-33 34 true} {-Normalfile-34 35 true} {-Normalfile-35 36 true} {-Normalfile-36 37 true} {-Normalfile-37 38 true} {-Normalfile-38 39 true} {-Normalfile-39 40 true} {-Normalfile-40 41 true} {-Normalfile-41 42 true}]
+Test: 0
+Seriously?
+Test: 5
+Max i to: 4
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true} {-Normalfile-24 25 true} {-Normalfile-25 26 true} {-Normalfile-26 27 true} {-Normalfile-27 28 true} {-Normalfile-28 29 true} {-Normalfile-29 30 true} {-Normalfile-30 31 true} {-Normalfile-31 32 true} {-Normalfile-32 33 true} {-Normalfile-33 34 true} {-Normalfile-34 35 true} {-Normalfile-35 36 true} {-Normalfile-36 37 true} {-Normalfile-37 38 true} {-Normalfile-38 39 true} {-Normalfile-39 40 true} {-Normalfile-40 41 true} {-Normalfile-41 42 true} {-Normalfile-42 43 true}]
+Test: 0
+Seriously?
+Test: 6
+Max i to: 5
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true} {-Normalfile-24 25 true} {-Normalfile-25 26 true} {-Normalfile-26 27 true} {-Normalfile-27 28 true} {-Normalfile-28 29 true} {-Normalfile-29 30 true} {-Normalfile-30 31 true} {-Normalfile-31 32 true} {-Normalfile-32 33 true} {-Normalfile-33 34 true} {-Normalfile-34 35 true} {-Normalfile-35 36 true} {-Normalfile-36 37 true} {-Normalfile-37 38 true} {-Normalfile-38 39 true} {-Normalfile-39 40 true} {-Normalfile-40 41 true} {-Normalfile-41 42 true} {-Normalfile-42 43 true} {-Normalfile-43 44 true}]
+Test: 0
+Seriously?
+Test: 6
+Max i to: 5
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true} {-Normalfile-24 25 true} {-Normalfile-25 26 true} {-Normalfile-26 27 true} {-Normalfile-27 28 true} {-Normalfile-28 29 true} {-Normalfile-29 30 true} {-Normalfile-30 31 true} {-Normalfile-31 32 true} {-Normalfile-32 33 true} {-Normalfile-33 34 true} {-Normalfile-34 35 true} {-Normalfile-35 36 true} {-Normalfile-36 37 true} {-Normalfile-37 38 true} {-Normalfile-38 39 true} {-Normalfile-39 40 true} {-Normalfile-40 41 true} {-Normalfile-41 42 true} {-Normalfile-42 43 true} {-Normalfile-43 44 true} {-Normalfile-44 45 true}]
+Test: 0
+Seriously?
+Test: 6
+Max i to: 5
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true} {-Normalfile-24 25 true} {-Normalfile-25 26 true} {-Normalfile-26 27 true} {-Normalfile-27 28 true} {-Normalfile-28 29 true} {-Normalfile-29 30 true} {-Normalfile-30 31 true} {-Normalfile-31 32 true} {-Normalfile-32 33 true} {-Normalfile-33 34 true} {-Normalfile-34 35 true} {-Normalfile-35 36 true} {-Normalfile-36 37 true} {-Normalfile-37 38 true} {-Normalfile-38 39 true} {-Normalfile-39 40 true} {-Normalfile-40 41 true} {-Normalfile-41 42 true} {-Normalfile-42 43 true} {-Normalfile-43 44 true} {-Normalfile-44 45 true} {-Normalfile-45 46 true}]
+Test: 0
+Seriously?
+Test: 6
+Max i to: 5
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true} {-Normalfile-24 25 true} {-Normalfile-25 26 true} {-Normalfile-26 27 true} {-Normalfile-27 28 true} {-Normalfile-28 29 true} {-Normalfile-29 30 true} {-Normalfile-30 31 true} {-Normalfile-31 32 true} {-Normalfile-32 33 true} {-Normalfile-33 34 true} {-Normalfile-34 35 true} {-Normalfile-35 36 true} {-Normalfile-36 37 true} {-Normalfile-37 38 true} {-Normalfile-38 39 true} {-Normalfile-39 40 true} {-Normalfile-40 41 true} {-Normalfile-41 42 true} {-Normalfile-42 43 true} {-Normalfile-43 44 true} {-Normalfile-44 45 true} {-Normalfile-45 46 true} {-Normalfile-46 47 true}]
+Test: 0
+Seriously?
+Test: 6
+Max i to: 5
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true} {-Normalfile-24 25 true} {-Normalfile-25 26 true} {-Normalfile-26 27 true} {-Normalfile-27 28 true} {-Normalfile-28 29 true} {-Normalfile-29 30 true} {-Normalfile-30 31 true} {-Normalfile-31 32 true} {-Normalfile-32 33 true} {-Normalfile-33 34 true} {-Normalfile-34 35 true} {-Normalfile-35 36 true} {-Normalfile-36 37 true} {-Normalfile-37 38 true} {-Normalfile-38 39 true} {-Normalfile-39 40 true} {-Normalfile-40 41 true} {-Normalfile-41 42 true} {-Normalfile-42 43 true} {-Normalfile-43 44 true} {-Normalfile-44 45 true} {-Normalfile-45 46 true} {-Normalfile-46 47 true} {-Normalfile-47 48 true}]
+Test: 0
+Seriously?
+Test: 6
+Max i to: 5
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true} {-Normalfile-24 25 true} {-Normalfile-25 26 true} {-Normalfile-26 27 true} {-Normalfile-27 28 true} {-Normalfile-28 29 true} {-Normalfile-29 30 true} {-Normalfile-30 31 true} {-Normalfile-31 32 true} {-Normalfile-32 33 true} {-Normalfile-33 34 true} {-Normalfile-34 35 true} {-Normalfile-35 36 true} {-Normalfile-36 37 true} {-Normalfile-37 38 true} {-Normalfile-38 39 true} {-Normalfile-39 40 true} {-Normalfile-40 41 true} {-Normalfile-41 42 true} {-Normalfile-42 43 true} {-Normalfile-43 44 true} {-Normalfile-44 45 true} {-Normalfile-45 46 true} {-Normalfile-46 47 true} {-Normalfile-47 48 true} {-Normalfile-48 49 true}]
+Test: 0
+Seriously?
+Test: 6
+Max i to: 5
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true} {-Normalfile-24 25 true} {-Normalfile-25 26 true} {-Normalfile-26 27 true} {-Normalfile-27 28 true} {-Normalfile-28 29 true} {-Normalfile-29 30 true} {-Normalfile-30 31 true} {-Normalfile-31 32 true} {-Normalfile-32 33 true} {-Normalfile-33 34 true} {-Normalfile-34 35 true} {-Normalfile-35 36 true} {-Normalfile-36 37 true} {-Normalfile-37 38 true} {-Normalfile-38 39 true} {-Normalfile-39 40 true} {-Normalfile-40 41 true} {-Normalfile-41 42 true} {-Normalfile-42 43 true} {-Normalfile-43 44 true} {-Normalfile-44 45 true} {-Normalfile-45 46 true} {-Normalfile-46 47 true} {-Normalfile-47 48 true} {-Normalfile-48 49 true} {-Normalfile-49 50 true}]
+Test: 0
+Seriously?
+Test: 6
+Max i to: 5
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true} {-Normalfile-24 25 true} {-Normalfile-25 26 true} {-Normalfile-26 27 true} {-Normalfile-27 28 true} {-Normalfile-28 29 true} {-Normalfile-29 30 true} {-Normalfile-30 31 true} {-Normalfile-31 32 true} {-Normalfile-32 33 true} {-Normalfile-33 34 true} {-Normalfile-34 35 true} {-Normalfile-35 36 true} {-Normalfile-36 37 true} {-Normalfile-37 38 true} {-Normalfile-38 39 true} {-Normalfile-39 40 true} {-Normalfile-40 41 true} {-Normalfile-41 42 true} {-Normalfile-42 43 true} {-Normalfile-43 44 true} {-Normalfile-44 45 true} {-Normalfile-45 46 true} {-Normalfile-46 47 true} {-Normalfile-47 48 true} {-Normalfile-48 49 true} {-Normalfile-49 50 true} {-Normalfile-50 51 true}]
+Test: 0
+Seriously?
+Test: 7
+Max i to: 6
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true} {-Normalfile-24 25 true} {-Normalfile-25 26 true} {-Normalfile-26 27 true} {-Normalfile-27 28 true} {-Normalfile-28 29 true} {-Normalfile-29 30 true} {-Normalfile-30 31 true} {-Normalfile-31 32 true} {-Normalfile-32 33 true} {-Normalfile-33 34 true} {-Normalfile-34 35 true} {-Normalfile-35 36 true} {-Normalfile-36 37 true} {-Normalfile-37 38 true} {-Normalfile-38 39 true} {-Normalfile-39 40 true} {-Normalfile-40 41 true} {-Normalfile-41 42 true} {-Normalfile-42 43 true} {-Normalfile-43 44 true} {-Normalfile-44 45 true} {-Normalfile-45 46 true} {-Normalfile-46 47 true} {-Normalfile-47 48 true} {-Normalfile-48 49 true} {-Normalfile-49 50 true} {-Normalfile-50 51 true} {-Normalfile-51 52 true}]
+Test: 0
+Seriously?
+Test: 7
+Max i to: 6
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true} {-Normalfile-24 25 true} {-Normalfile-25 26 true} {-Normalfile-26 27 true} {-Normalfile-27 28 true} {-Normalfile-28 29 true} {-Normalfile-29 30 true} {-Normalfile-30 31 true} {-Normalfile-31 32 true} {-Normalfile-32 33 true} {-Normalfile-33 34 true} {-Normalfile-34 35 true} {-Normalfile-35 36 true} {-Normalfile-36 37 true} {-Normalfile-37 38 true} {-Normalfile-38 39 true} {-Normalfile-39 40 true} {-Normalfile-40 41 true} {-Normalfile-41 42 true} {-Normalfile-42 43 true} {-Normalfile-43 44 true} {-Normalfile-44 45 true} {-Normalfile-45 46 true} {-Normalfile-46 47 true} {-Normalfile-47 48 true} {-Normalfile-48 49 true} {-Normalfile-49 50 true} {-Normalfile-50 51 true} {-Normalfile-51 52 true} {-Normalfile-52 53 true}]
+Test: 0
+Seriously?
+Test: 7
+Max i to: 6
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true} {-Normalfile-24 25 true} {-Normalfile-25 26 true} {-Normalfile-26 27 true} {-Normalfile-27 28 true} {-Normalfile-28 29 true} {-Normalfile-29 30 true} {-Normalfile-30 31 true} {-Normalfile-31 32 true} {-Normalfile-32 33 true} {-Normalfile-33 34 true} {-Normalfile-34 35 true} {-Normalfile-35 36 true} {-Normalfile-36 37 true} {-Normalfile-37 38 true} {-Normalfile-38 39 true} {-Normalfile-39 40 true} {-Normalfile-40 41 true} {-Normalfile-41 42 true} {-Normalfile-42 43 true} {-Normalfile-43 44 true} {-Normalfile-44 45 true} {-Normalfile-45 46 true} {-Normalfile-46 47 true} {-Normalfile-47 48 true} {-Normalfile-48 49 true} {-Normalfile-49 50 true} {-Normalfile-50 51 true} {-Normalfile-51 52 true} {-Normalfile-52 53 true} {-Normalfile-53 54 true}]
+Test: 0
+Seriously?
+Test: 7
+Max i to: 6
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true} {-Normalfile-24 25 true} {-Normalfile-25 26 true} {-Normalfile-26 27 true} {-Normalfile-27 28 true} {-Normalfile-28 29 true} {-Normalfile-29 30 true} {-Normalfile-30 31 true} {-Normalfile-31 32 true} {-Normalfile-32 33 true} {-Normalfile-33 34 true} {-Normalfile-34 35 true} {-Normalfile-35 36 true} {-Normalfile-36 37 true} {-Normalfile-37 38 true} {-Normalfile-38 39 true} {-Normalfile-39 40 true} {-Normalfile-40 41 true} {-Normalfile-41 42 true} {-Normalfile-42 43 true} {-Normalfile-43 44 true} {-Normalfile-44 45 true} {-Normalfile-45 46 true} {-Normalfile-46 47 true} {-Normalfile-47 48 true} {-Normalfile-48 49 true} {-Normalfile-49 50 true} {-Normalfile-50 51 true} {-Normalfile-51 52 true} {-Normalfile-52 53 true} {-Normalfile-53 54 true} {-Normalfile-54 55 true}]
+Test: 0
+Seriously?
+Test: 7
+Max i to: 6
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true} {-Normalfile-24 25 true} {-Normalfile-25 26 true} {-Normalfile-26 27 true} {-Normalfile-27 28 true} {-Normalfile-28 29 true} {-Normalfile-29 30 true} {-Normalfile-30 31 true} {-Normalfile-31 32 true} {-Normalfile-32 33 true} {-Normalfile-33 34 true} {-Normalfile-34 35 true} {-Normalfile-35 36 true} {-Normalfile-36 37 true} {-Normalfile-37 38 true} {-Normalfile-38 39 true} {-Normalfile-39 40 true} {-Normalfile-40 41 true} {-Normalfile-41 42 true} {-Normalfile-42 43 true} {-Normalfile-43 44 true} {-Normalfile-44 45 true} {-Normalfile-45 46 true} {-Normalfile-46 47 true} {-Normalfile-47 48 true} {-Normalfile-48 49 true} {-Normalfile-49 50 true} {-Normalfile-50 51 true} {-Normalfile-51 52 true} {-Normalfile-52 53 true} {-Normalfile-53 54 true} {-Normalfile-54 55 true} {-Normalfile-55 56 true}]
+Test: 0
+Seriously?
+Test: 7
+Max i to: 6
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true} {-Normalfile-24 25 true} {-Normalfile-25 26 true} {-Normalfile-26 27 true} {-Normalfile-27 28 true} {-Normalfile-28 29 true} {-Normalfile-29 30 true} {-Normalfile-30 31 true} {-Normalfile-31 32 true} {-Normalfile-32 33 true} {-Normalfile-33 34 true} {-Normalfile-34 35 true} {-Normalfile-35 36 true} {-Normalfile-36 37 true} {-Normalfile-37 38 true} {-Normalfile-38 39 true} {-Normalfile-39 40 true} {-Normalfile-40 41 true} {-Normalfile-41 42 true} {-Normalfile-42 43 true} {-Normalfile-43 44 true} {-Normalfile-44 45 true} {-Normalfile-45 46 true} {-Normalfile-46 47 true} {-Normalfile-47 48 true} {-Normalfile-48 49 true} {-Normalfile-49 50 true} {-Normalfile-50 51 true} {-Normalfile-51 52 true} {-Normalfile-52 53 true} {-Normalfile-53 54 true} {-Normalfile-54 55 true} {-Normalfile-55 56 true} {-Normalfile-56 57 true}]
+Test: 0
+Seriously?
+Test: 7
+Max i to: 6
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true} {-Normalfile-24 25 true} {-Normalfile-25 26 true} {-Normalfile-26 27 true} {-Normalfile-27 28 true} {-Normalfile-28 29 true} {-Normalfile-29 30 true} {-Normalfile-30 31 true} {-Normalfile-31 32 true} {-Normalfile-32 33 true} {-Normalfile-33 34 true} {-Normalfile-34 35 true} {-Normalfile-35 36 true} {-Normalfile-36 37 true} {-Normalfile-37 38 true} {-Normalfile-38 39 true} {-Normalfile-39 40 true} {-Normalfile-40 41 true} {-Normalfile-41 42 true} {-Normalfile-42 43 true} {-Normalfile-43 44 true} {-Normalfile-44 45 true} {-Normalfile-45 46 true} {-Normalfile-46 47 true} {-Normalfile-47 48 true} {-Normalfile-48 49 true} {-Normalfile-49 50 true} {-Normalfile-50 51 true} {-Normalfile-51 52 true} {-Normalfile-52 53 true} {-Normalfile-53 54 true} {-Normalfile-54 55 true} {-Normalfile-55 56 true} {-Normalfile-56 57 true} {-Normalfile-57 58 true}]
+Test: 0
+Seriously?
+Test: 7
+Max i to: 6
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true} {-Normalfile-24 25 true} {-Normalfile-25 26 true} {-Normalfile-26 27 true} {-Normalfile-27 28 true} {-Normalfile-28 29 true} {-Normalfile-29 30 true} {-Normalfile-30 31 true} {-Normalfile-31 32 true} {-Normalfile-32 33 true} {-Normalfile-33 34 true} {-Normalfile-34 35 true} {-Normalfile-35 36 true} {-Normalfile-36 37 true} {-Normalfile-37 38 true} {-Normalfile-38 39 true} {-Normalfile-39 40 true} {-Normalfile-40 41 true} {-Normalfile-41 42 true} {-Normalfile-42 43 true} {-Normalfile-43 44 true} {-Normalfile-44 45 true} {-Normalfile-45 46 true} {-Normalfile-46 47 true} {-Normalfile-47 48 true} {-Normalfile-48 49 true} {-Normalfile-49 50 true} {-Normalfile-50 51 true} {-Normalfile-51 52 true} {-Normalfile-52 53 true} {-Normalfile-53 54 true} {-Normalfile-54 55 true} {-Normalfile-55 56 true} {-Normalfile-56 57 true} {-Normalfile-57 58 true} {-Normalfile-58 59 true}]
+Test: 0
+Seriously?
+Test: 8
+Max i to: 7
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true} {-Normalfile-24 25 true} {-Normalfile-25 26 true} {-Normalfile-26 27 true} {-Normalfile-27 28 true} {-Normalfile-28 29 true} {-Normalfile-29 30 true} {-Normalfile-30 31 true} {-Normalfile-31 32 true} {-Normalfile-32 33 true} {-Normalfile-33 34 true} {-Normalfile-34 35 true} {-Normalfile-35 36 true} {-Normalfile-36 37 true} {-Normalfile-37 38 true} {-Normalfile-38 39 true} {-Normalfile-39 40 true} {-Normalfile-40 41 true} {-Normalfile-41 42 true} {-Normalfile-42 43 true} {-Normalfile-43 44 true} {-Normalfile-44 45 true} {-Normalfile-45 46 true} {-Normalfile-46 47 true} {-Normalfile-47 48 true} {-Normalfile-48 49 true} {-Normalfile-49 50 true} {-Normalfile-50 51 true} {-Normalfile-51 52 true} {-Normalfile-52 53 true} {-Normalfile-53 54 true} {-Normalfile-54 55 true} {-Normalfile-55 56 true} {-Normalfile-56 57 true} {-Normalfile-57 58 true} {-Normalfile-58 59 true} {-Normalfile-59 60 true}]
+Test: 0
+Seriously?
+Test: 8
+Max i to: 7
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true} {-Normalfile-24 25 true} {-Normalfile-25 26 true} {-Normalfile-26 27 true} {-Normalfile-27 28 true} {-Normalfile-28 29 true} {-Normalfile-29 30 true} {-Normalfile-30 31 true} {-Normalfile-31 32 true} {-Normalfile-32 33 true} {-Normalfile-33 34 true} {-Normalfile-34 35 true} {-Normalfile-35 36 true} {-Normalfile-36 37 true} {-Normalfile-37 38 true} {-Normalfile-38 39 true} {-Normalfile-39 40 true} {-Normalfile-40 41 true} {-Normalfile-41 42 true} {-Normalfile-42 43 true} {-Normalfile-43 44 true} {-Normalfile-44 45 true} {-Normalfile-45 46 true} {-Normalfile-46 47 true} {-Normalfile-47 48 true} {-Normalfile-48 49 true} {-Normalfile-49 50 true} {-Normalfile-50 51 true} {-Normalfile-51 52 true} {-Normalfile-52 53 true} {-Normalfile-53 54 true} {-Normalfile-54 55 true} {-Normalfile-55 56 true} {-Normalfile-56 57 true} {-Normalfile-57 58 true} {-Normalfile-58 59 true} {-Normalfile-59 60 true} {-Normalfile-60 61 true}]
+Test: 0
+Seriously?
+Test: 8
+Max i to: 7
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true} {-Normalfile-24 25 true} {-Normalfile-25 26 true} {-Normalfile-26 27 true} {-Normalfile-27 28 true} {-Normalfile-28 29 true} {-Normalfile-29 30 true} {-Normalfile-30 31 true} {-Normalfile-31 32 true} {-Normalfile-32 33 true} {-Normalfile-33 34 true} {-Normalfile-34 35 true} {-Normalfile-35 36 true} {-Normalfile-36 37 true} {-Normalfile-37 38 true} {-Normalfile-38 39 true} {-Normalfile-39 40 true} {-Normalfile-40 41 true} {-Normalfile-41 42 true} {-Normalfile-42 43 true} {-Normalfile-43 44 true} {-Normalfile-44 45 true} {-Normalfile-45 46 true} {-Normalfile-46 47 true} {-Normalfile-47 48 true} {-Normalfile-48 49 true} {-Normalfile-49 50 true} {-Normalfile-50 51 true} {-Normalfile-51 52 true} {-Normalfile-52 53 true} {-Normalfile-53 54 true} {-Normalfile-54 55 true} {-Normalfile-55 56 true} {-Normalfile-56 57 true} {-Normalfile-57 58 true} {-Normalfile-58 59 true} {-Normalfile-59 60 true} {-Normalfile-60 61 true} {-Normalfile-61 62 true}]
+Test: 0
+Seriously?
+Test: 8
+Max i to: 7
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true} {-Normalfile-24 25 true} {-Normalfile-25 26 true} {-Normalfile-26 27 true} {-Normalfile-27 28 true} {-Normalfile-28 29 true} {-Normalfile-29 30 true} {-Normalfile-30 31 true} {-Normalfile-31 32 true} {-Normalfile-32 33 true} {-Normalfile-33 34 true} {-Normalfile-34 35 true} {-Normalfile-35 36 true} {-Normalfile-36 37 true} {-Normalfile-37 38 true} {-Normalfile-38 39 true} {-Normalfile-39 40 true} {-Normalfile-40 41 true} {-Normalfile-41 42 true} {-Normalfile-42 43 true} {-Normalfile-43 44 true} {-Normalfile-44 45 true} {-Normalfile-45 46 true} {-Normalfile-46 47 true} {-Normalfile-47 48 true} {-Normalfile-48 49 true} {-Normalfile-49 50 true} {-Normalfile-50 51 true} {-Normalfile-51 52 true} {-Normalfile-52 53 true} {-Normalfile-53 54 true} {-Normalfile-54 55 true} {-Normalfile-55 56 true} {-Normalfile-56 57 true} {-Normalfile-57 58 true} {-Normalfile-58 59 true} {-Normalfile-59 60 true} {-Normalfile-60 61 true} {-Normalfile-61 62 true} {-Normalfile-62 63 true}]
+Test: 0
+Seriously?
+Test: 8
+Max i to: 7
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true} {-Normalfile-24 25 true} {-Normalfile-25 26 true} {-Normalfile-26 27 true} {-Normalfile-27 28 true} {-Normalfile-28 29 true} {-Normalfile-29 30 true} {-Normalfile-30 31 true} {-Normalfile-31 32 true} {-Normalfile-32 33 true} {-Normalfile-33 34 true} {-Normalfile-34 35 true} {-Normalfile-35 36 true} {-Normalfile-36 37 true} {-Normalfile-37 38 true} {-Normalfile-38 39 true} {-Normalfile-39 40 true} {-Normalfile-40 41 true} {-Normalfile-41 42 true} {-Normalfile-42 43 true} {-Normalfile-43 44 true} {-Normalfile-44 45 true} {-Normalfile-45 46 true} {-Normalfile-46 47 true} {-Normalfile-47 48 true} {-Normalfile-48 49 true} {-Normalfile-49 50 true} {-Normalfile-50 51 true} {-Normalfile-51 52 true} {-Normalfile-52 53 true} {-Normalfile-53 54 true} {-Normalfile-54 55 true} {-Normalfile-55 56 true} {-Normalfile-56 57 true} {-Normalfile-57 58 true} {-Normalfile-58 59 true} {-Normalfile-59 60 true} {-Normalfile-60 61 true} {-Normalfile-61 62 true} {-Normalfile-62 63 true} {-Normalfile-63 64 true}]
+Test: 0
+Seriously?
+Test: 8
+Max i to: 7
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true} {-Normalfile-24 25 true} {-Normalfile-25 26 true} {-Normalfile-26 27 true} {-Normalfile-27 28 true} {-Normalfile-28 29 true} {-Normalfile-29 30 true} {-Normalfile-30 31 true} {-Normalfile-31 32 true} {-Normalfile-32 33 true} {-Normalfile-33 34 true} {-Normalfile-34 35 true} {-Normalfile-35 36 true} {-Normalfile-36 37 true} {-Normalfile-37 38 true} {-Normalfile-38 39 true} {-Normalfile-39 40 true} {-Normalfile-40 41 true} {-Normalfile-41 42 true} {-Normalfile-42 43 true} {-Normalfile-43 44 true} {-Normalfile-44 45 true} {-Normalfile-45 46 true} {-Normalfile-46 47 true} {-Normalfile-47 48 true} {-Normalfile-48 49 true} {-Normalfile-49 50 true} {-Normalfile-50 51 true} {-Normalfile-51 52 true} {-Normalfile-52 53 true} {-Normalfile-53 54 true} {-Normalfile-54 55 true} {-Normalfile-55 56 true} {-Normalfile-56 57 true} {-Normalfile-57 58 true} {-Normalfile-58 59 true} {-Normalfile-59 60 true} {-Normalfile-60 61 true} {-Normalfile-61 62 true} {-Normalfile-62 63 true} {-Normalfile-63 64 true} {-Normalfile-64 65 true}]
+Test: 0
+Seriously?
+Test: 8
+Max i to: 7
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true} {-Normalfile-24 25 true} {-Normalfile-25 26 true} {-Normalfile-26 27 true} {-Normalfile-27 28 true} {-Normalfile-28 29 true} {-Normalfile-29 30 true} {-Normalfile-30 31 true} {-Normalfile-31 32 true} {-Normalfile-32 33 true} {-Normalfile-33 34 true} {-Normalfile-34 35 true} {-Normalfile-35 36 true} {-Normalfile-36 37 true} {-Normalfile-37 38 true} {-Normalfile-38 39 true} {-Normalfile-39 40 true} {-Normalfile-40 41 true} {-Normalfile-41 42 true} {-Normalfile-42 43 true} {-Normalfile-43 44 true} {-Normalfile-44 45 true} {-Normalfile-45 46 true} {-Normalfile-46 47 true} {-Normalfile-47 48 true} {-Normalfile-48 49 true} {-Normalfile-49 50 true} {-Normalfile-50 51 true} {-Normalfile-51 52 true} {-Normalfile-52 53 true} {-Normalfile-53 54 true} {-Normalfile-54 55 true} {-Normalfile-55 56 true} {-Normalfile-56 57 true} {-Normalfile-57 58 true} {-Normalfile-58 59 true} {-Normalfile-59 60 true} {-Normalfile-60 61 true} {-Normalfile-61 62 true} {-Normalfile-62 63 true} {-Normalfile-63 64 true} {-Normalfile-64 65 true} {-Normalfile-65 66 true}]
+Test: 0
+Seriously?
+Test: 8
+Max i to: 7
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true} {-Normalfile-24 25 true} {-Normalfile-25 26 true} {-Normalfile-26 27 true} {-Normalfile-27 28 true} {-Normalfile-28 29 true} {-Normalfile-29 30 true} {-Normalfile-30 31 true} {-Normalfile-31 32 true} {-Normalfile-32 33 true} {-Normalfile-33 34 true} {-Normalfile-34 35 true} {-Normalfile-35 36 true} {-Normalfile-36 37 true} {-Normalfile-37 38 true} {-Normalfile-38 39 true} {-Normalfile-39 40 true} {-Normalfile-40 41 true} {-Normalfile-41 42 true} {-Normalfile-42 43 true} {-Normalfile-43 44 true} {-Normalfile-44 45 true} {-Normalfile-45 46 true} {-Normalfile-46 47 true} {-Normalfile-47 48 true} {-Normalfile-48 49 true} {-Normalfile-49 50 true} {-Normalfile-50 51 true} {-Normalfile-51 52 true} {-Normalfile-52 53 true} {-Normalfile-53 54 true} {-Normalfile-54 55 true} {-Normalfile-55 56 true} {-Normalfile-56 57 true} {-Normalfile-57 58 true} {-Normalfile-58 59 true} {-Normalfile-59 60 true} {-Normalfile-60 61 true} {-Normalfile-61 62 true} {-Normalfile-62 63 true} {-Normalfile-63 64 true} {-Normalfile-64 65 true} {-Normalfile-65 66 true} {-Normalfile-66 67 true}]
+Test: 0
+Seriously?
+Test: 9
+Max i to: 8
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true} {-Normalfile-24 25 true} {-Normalfile-25 26 true} {-Normalfile-26 27 true} {-Normalfile-27 28 true} {-Normalfile-28 29 true} {-Normalfile-29 30 true} {-Normalfile-30 31 true} {-Normalfile-31 32 true} {-Normalfile-32 33 true} {-Normalfile-33 34 true} {-Normalfile-34 35 true} {-Normalfile-35 36 true} {-Normalfile-36 37 true} {-Normalfile-37 38 true} {-Normalfile-38 39 true} {-Normalfile-39 40 true} {-Normalfile-40 41 true} {-Normalfile-41 42 true} {-Normalfile-42 43 true} {-Normalfile-43 44 true} {-Normalfile-44 45 true} {-Normalfile-45 46 true} {-Normalfile-46 47 true} {-Normalfile-47 48 true} {-Normalfile-48 49 true} {-Normalfile-49 50 true} {-Normalfile-50 51 true} {-Normalfile-51 52 true} {-Normalfile-52 53 true} {-Normalfile-53 54 true} {-Normalfile-54 55 true} {-Normalfile-55 56 true} {-Normalfile-56 57 true} {-Normalfile-57 58 true} {-Normalfile-58 59 true} {-Normalfile-59 60 true} {-Normalfile-60 61 true} {-Normalfile-61 62 true} {-Normalfile-62 63 true} {-Normalfile-63 64 true} {-Normalfile-64 65 true} {-Normalfile-65 66 true} {-Normalfile-66 67 true} {-Normalfile-67 68 true}]
+Test: 0
+Seriously?
+Test: 9
+Max i to: 8
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true} {-Normalfile-24 25 true} {-Normalfile-25 26 true} {-Normalfile-26 27 true} {-Normalfile-27 28 true} {-Normalfile-28 29 true} {-Normalfile-29 30 true} {-Normalfile-30 31 true} {-Normalfile-31 32 true} {-Normalfile-32 33 true} {-Normalfile-33 34 true} {-Normalfile-34 35 true} {-Normalfile-35 36 true} {-Normalfile-36 37 true} {-Normalfile-37 38 true} {-Normalfile-38 39 true} {-Normalfile-39 40 true} {-Normalfile-40 41 true} {-Normalfile-41 42 true} {-Normalfile-42 43 true} {-Normalfile-43 44 true} {-Normalfile-44 45 true} {-Normalfile-45 46 true} {-Normalfile-46 47 true} {-Normalfile-47 48 true} {-Normalfile-48 49 true} {-Normalfile-49 50 true} {-Normalfile-50 51 true} {-Normalfile-51 52 true} {-Normalfile-52 53 true} {-Normalfile-53 54 true} {-Normalfile-54 55 true} {-Normalfile-55 56 true} {-Normalfile-56 57 true} {-Normalfile-57 58 true} {-Normalfile-58 59 true} {-Normalfile-59 60 true} {-Normalfile-60 61 true} {-Normalfile-61 62 true} {-Normalfile-62 63 true} {-Normalfile-63 64 true} {-Normalfile-64 65 true} {-Normalfile-65 66 true} {-Normalfile-66 67 true} {-Normalfile-67 68 true} {-Normalfile-68 69 true}]
+Test: 0
+Seriously?
+Test: 9
+Max i to: 8
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true} {-Normalfile-24 25 true} {-Normalfile-25 26 true} {-Normalfile-26 27 true} {-Normalfile-27 28 true} {-Normalfile-28 29 true} {-Normalfile-29 30 true} {-Normalfile-30 31 true} {-Normalfile-31 32 true} {-Normalfile-32 33 true} {-Normalfile-33 34 true} {-Normalfile-34 35 true} {-Normalfile-35 36 true} {-Normalfile-36 37 true} {-Normalfile-37 38 true} {-Normalfile-38 39 true} {-Normalfile-39 40 true} {-Normalfile-40 41 true} {-Normalfile-41 42 true} {-Normalfile-42 43 true} {-Normalfile-43 44 true} {-Normalfile-44 45 true} {-Normalfile-45 46 true} {-Normalfile-46 47 true} {-Normalfile-47 48 true} {-Normalfile-48 49 true} {-Normalfile-49 50 true} {-Normalfile-50 51 true} {-Normalfile-51 52 true} {-Normalfile-52 53 true} {-Normalfile-53 54 true} {-Normalfile-54 55 true} {-Normalfile-55 56 true} {-Normalfile-56 57 true} {-Normalfile-57 58 true} {-Normalfile-58 59 true} {-Normalfile-59 60 true} {-Normalfile-60 61 true} {-Normalfile-61 62 true} {-Normalfile-62 63 true} {-Normalfile-63 64 true} {-Normalfile-64 65 true} {-Normalfile-65 66 true} {-Normalfile-66 67 true} {-Normalfile-67 68 true} {-Normalfile-68 69 true} {-Normalfile-69 70 true}]
+Test: 0
+Seriously?
+Test: 9
+Max i to: 8
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true} {-Normalfile-24 25 true} {-Normalfile-25 26 true} {-Normalfile-26 27 true} {-Normalfile-27 28 true} {-Normalfile-28 29 true} {-Normalfile-29 30 true} {-Normalfile-30 31 true} {-Normalfile-31 32 true} {-Normalfile-32 33 true} {-Normalfile-33 34 true} {-Normalfile-34 35 true} {-Normalfile-35 36 true} {-Normalfile-36 37 true} {-Normalfile-37 38 true} {-Normalfile-38 39 true} {-Normalfile-39 40 true} {-Normalfile-40 41 true} {-Normalfile-41 42 true} {-Normalfile-42 43 true} {-Normalfile-43 44 true} {-Normalfile-44 45 true} {-Normalfile-45 46 true} {-Normalfile-46 47 true} {-Normalfile-47 48 true} {-Normalfile-48 49 true} {-Normalfile-49 50 true} {-Normalfile-50 51 true} {-Normalfile-51 52 true} {-Normalfile-52 53 true} {-Normalfile-53 54 true} {-Normalfile-54 55 true} {-Normalfile-55 56 true} {-Normalfile-56 57 true} {-Normalfile-57 58 true} {-Normalfile-58 59 true} {-Normalfile-59 60 true} {-Normalfile-60 61 true} {-Normalfile-61 62 true} {-Normalfile-62 63 true} {-Normalfile-63 64 true} {-Normalfile-64 65 true} {-Normalfile-65 66 true} {-Normalfile-66 67 true} {-Normalfile-67 68 true} {-Normalfile-68 69 true} {-Normalfile-69 70 true} {-Normalfile-70 71 true}]
+Test: 0
+Seriously?
+Test: 9
+Max i to: 8
+Before adding: [{Folder 4 4 true} {-Normalfile-4 5 true} {-Normalfile-5 6 true} {-Normalfile-6 7 true} {-Normalfile-7 8 true} {-Normalfile-8 9 true} {-Normalfile-9 10 true} {-Normalfile-10 11 true} {-Normalfile-11 12 true} {-Normalfile-12 13 true} {-Normalfile-13 14 true} {-Normalfile-14 15 true} {-Normalfile-15 16 true} {-Normalfile-16 17 true} {-Normalfile-17 18 true} {-Normalfile-18 19 true} {-Normalfile-19 20 true} {-Normalfile-20 21 true} {-Normalfile-21 22 true} {-Normalfile-22 23 true} {-Normalfile-23 24 true} {-Normalfile-24 25 true} {-Normalfile-25 26 true} {-Normalfile-26 27 true} {-Normalfile-27 28 true} {-Normalfile-28 29 true} {-Normalfile-29 30 true} {-Normalfile-30 31 true} {-Normalfile-31 32 true} {-Normalfile-32 33 true} {-Normalfile-33 34 true} {-Normalfile-34 35 true} {-Normalfile-35 36 true} {-Normalfile-36 37 true} {-Normalfile-37 38 true} {-Normalfile-38 39 true} {-Normalfile-39 40 true} {-Normalfile-40 41 true} {-Normalfile-41 42 true} {-Normalfile-42 43 true} {-Normalfile-43 44 true} {-Normalfile-44 45 true} {-Normalfile-45 46 true} {-Normalfile-46 47 true} {-Normalfile-47 48 true} {-Normalfile-48 49 true} {-Normalfile-49 50 true} {-Normalfile-50 51 true} {-Normalfile-51 52 true} {-Normalfile-52 53 true} {-Normalfile-53 54 true} {-Normalfile-54 55 true} {-Normalfile-55 56 true} {-Normalfile-56 57 true} {-Normalfile-57 58 true} {-Normalfile-58 59 true} {-Normalfile-59 60 true} {-Normalfile-60 61 true} {-Normalfile-61 62 true} {-Normalfile-62 63 true} {-Normalfile-63 64 true} {-Normalfile-64 65 true} {-Normalfile-65 66 true} {-Normalfile-66 67 true} {-Normalfile-67 68 true} {-Normalfile-68 69 true} {-Normalfile-69 70 true} {-Normalfile-70 71 true} {-Normalfile-71 72 true}]
+Test: 0
+Seriously?
+Test: 9
+Max i to: 8
+Secondary: map[-Normalfile-10:11 -Normalfile-11:12 -Normalfile-12:13 -Normalfile-13:14 -Normalfile-14:15 -Normalfile-15:16 -Normalfile-16:17 -Normalfile-17:18 -Normalfile-18:19 -Normalfile-19:20 -Normalfile-20:21 -Normalfile-21:22 -Normalfile-22:23 -Normalfile-23:24 -Normalfile-24:25 -Normalfile-25:26 -Normalfile-26:27 -Normalfile-27:28 -Normalfile-28:29 -Normalfile-29:30 -Normalfile-30:31 -Normalfile-31:32 -Normalfile-32:33 -Normalfile-33:34 -Normalfile-34:35 -Normalfile-35:36 -Normalfile-36:37 -Normalfile-37:38 -Normalfile-38:39 -Normalfile-39:40 -Normalfile-4:5 -Normalfile-40:41 -Normalfile-41:42 -Normalfile-42:43 -Normalfile-43:44 -Normalfile-44:45 -Normalfile-45:46 -Normalfile-46:47 -Normalfile-47:48 -Normalfile-48:49 -Normalfile-49:50 -Normalfile-5:6 -Normalfile-50:51 -Normalfile-51:52 -Normalfile-52:53 -Normalfile-53:54 -Normalfile-54:55 -Normalfile-55:56 -Normalfile-56:57 -Normalfile-57:58 -Normalfile-58:59 -Normalfile-59:60 -Normalfile-6:7 -Normalfile-60:61 -Normalfile-61:62 -Normalfile-62:63 -Normalfile-63:64 -Normalfile-64:65 -Normalfile-65:66 -Normalfile-66:67 -Normalfile-67:68 -Normalfile-68:69 -Normalfile-69:70 -Normalfile-7:8 -Normalfile-70:71 -Normalfile-71:72 -Normalfile-72:73 -Normalfile-8:9 -Normalfile-9:10 Folder 4:4]
+-----------------------Delete test.----------------------------------
+Max i to: 8
+Test: 0
+-----------------------------------------------------------------------------------------------------
+Seriously?
+Test: 9
+Test: 9
+-----------------------------------------------------------------------------------------------------
+Max i to: 8
+Test: 0
+-----------------------------------------------------------------------------------------------------
+Seriously?
+Test: 9
+Test: 9
+-----------------------------------------------------------------------------------------------------
+Max i to: 8
+Test: 0
+-----------------------------------------------------------------------------------------------------
+Seriously?
+Test: 9
+Test: 9
+-----------------------------------------------------------------------------------------------------
+Tag1: 6
+Max i to: 8
+Secondary: map[-Normalfile-10:11 -Normalfile-11:12 -Normalfile-12:13 -Normalfile-13:14 -Normalfile-15:16 -Normalfile-16:17 -Normalfile-17:18 -Normalfile-18:19 -Normalfile-19:20 -Normalfile-20:21 -Normalfile-21:22 -Normalfile-22:23 -Normalfile-23:24 -Normalfile-24:25 -Normalfile-25:26 -Normalfile-26:27 -Normalfile-27:28 -Normalfile-28:29 -Normalfile-29:30 -Normalfile-30:31 -Normalfile-31:32 -Normalfile-32:33 -Normalfile-33:34 -Normalfile-34:35 -Normalfile-35:36 -Normalfile-36:37 -Normalfile-37:38 -Normalfile-38:39 -Normalfile-39:40 -Normalfile-4:5 -Normalfile-40:41 -Normalfile-41:42 -Normalfile-42:43 -Normalfile-44:45 -Normalfile-45:46 -Normalfile-46:47 -Normalfile-47:48 -Normalfile-48:49 -Normalfile-49:50 -Normalfile-50:51 -Normalfile-51:52 -Normalfile-52:53 -Normalfile-53:54 -Normalfile-54:55 -Normalfile-55:56 -Normalfile-56:57 -Normalfile-57:58 -Normalfile-58:59 -Normalfile-59:60 -Normalfile-6:7 -Normalfile-60:61 -Normalfile-61:62 -Normalfile-62:63 -Normalfile-63:64 -Normalfile-64:65 -Normalfile-65:66 -Normalfile-66:67 -Normalfile-67:68 -Normalfile-68:69 -Normalfile-69:70 -Normalfile-7:8 -Normalfile-70:71 -Normalfile-71:72 -Normalfile-72:73 -Normalfile-8:9 -Normalfile-9:10 Folder 4:4]

@@ -1,7 +1,10 @@
 package main
 
-import "fmt"
+import "LSF/Test"
 
 func main() {
-	fmt.Println("Hello!")
+	//Test.Test1()
+	//Test.Test2()
+	//Test.Test3()
+	Test.Test4()
 }
