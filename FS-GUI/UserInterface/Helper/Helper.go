@@ -27,8 +27,15 @@ func CreateByPath(afs *AppFSLayer.AppFS, path string, fileType int) (string, Fil
 	if err != "" {
 		return err, File.FileHandler{}
 	}
+	newName := names[len(names)-1]
+	_, lts := File.GetFolderContent(afs, hanP)
+	for _, v := range lts {
+		if v.Name == newName {
+			return fmt.Sprint("File already exist:", newName), File.FileHandler{}
+		}
+	}
 
-	return File.Create(afs, hanP, names[len(names)-1], fileType)
+	return File.Create(afs, hanP, newName, fileType)
 
 }
 

@@ -6,6 +6,7 @@ import (
 	"LSF/FileDisk"
 	"LSF/Setting"
 	"LSF/UserInterface/Helper"
+	"errors"
 	"fmt"
 	"log"
 	"path/filepath"
@@ -13,6 +14,7 @@ import (
 
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
+	"fyne.io/fyne/v2/container"
 	"fyne.io/fyne/v2/dialog"
 	"fyne.io/fyne/v2/layout"
 	"fyne.io/fyne/v2/theme"
@@ -53,8 +55,8 @@ func main() {
 	disk.Init(nF, sF)
 	fmt.Printf("Do you want to reformat the disk?[Y/N][Default:N]:")
 	c := 'a'
-	r, err := fmt.Scanf("%c", &c)
-	fmt.Println("c:", c, "*", " r:", r, " err:", err)
+	_, _ = fmt.Scanf("%c", &c)
+
 	if c == 'Y' || c == 'y' {
 		afs.FormatFS(&disk)
 	} else {
@@ -62,8 +64,6 @@ func main() {
 	}
 
 	defer disk.Close()
-	//File system init.
-	//afs.LoadFS(&disk)
 
 	a := app.New()
 	w := a.NewWindow("File Manager")
@@ -92,29 +92,30 @@ func main() {
 	}
 
 	// 创建顶部工具栏
-	toolbar := widget.NewToolbar(
-		widget.NewToolbarAction(theme.FolderOpenIcon(), func() {
+
+	toolbar := container.NewHBox(
+		widget.NewButtonWithIcon("Parent Folder", theme.FolderOpenIcon(), func() {
 			// 打开文件夹
 			currentPath = filepath.Dir(currentPath)
 			log.Println("Open folder:", currentPath)
 			updateFileList(list, currentPathLabel)
 		}),
-		widget.NewToolbarAction(theme.ContentAddIcon(), func() {
+		widget.NewButtonWithIcon("Create File", theme.ContentAddIcon(), func() {
 			// 创建文件
 			showCreateFileDialog(w, list, currentPathLabel)
 		}),
-		widget.NewToolbarAction(theme.FolderNewIcon(), func() {
+		widget.NewButtonWithIcon("Create Folder", theme.FolderNewIcon(), func() {
 			// 创建文件夹
 			showCreateFolderDialog(w, list, currentPathLabel)
 		}),
-		widget.NewToolbarAction(theme.DeleteIcon(), func() {
+		widget.NewButtonWithIcon("Delete", theme.DeleteIcon(), func() {
 			// 删除文件或文件夹
 			if selectedFileIdx >= 0 && selectedFileIdx < len(files) {
 				file := files[selectedFileIdx]
 				showDeleteFileDialog(w, file, list, currentPathLabel)
 			}
 		}),
-		widget.NewToolbarAction(theme.ConfirmIcon(), func() {
+		widget.NewButtonWithIcon("Open", theme.ConfirmIcon(), func() {
 			// 打开或查看文件
 			if selectedFileIdx >= len(files) {
 				return
@@ -129,32 +130,13 @@ func main() {
 			} else {
 				// 如果选中的是文本文件，则打开文件
 				if true {
-					/*content, err := ioutil.ReadFile(filepath.Join(currentPath, file.Name))
-					if err != nil {
-						dialog.ShowError(err, w)
-						return
-					}*/
-					//err2 := ""
 					err1, Handler := FF.GetHandler(&afs, filepath.Join(currentPath, file.Name))
 					if err1 != "" {
 						log.Fatal("Err1:", err1)
 					}
 					content := getFullContent(Handler)
-					//fmt.Println("content", content)
-					/*if err1 != "" || err2 != "" {
-						log.Fatal("Err1:", err1, "  Err2:", err2)
-					}*/
-					//content := contentB[:]
 					showFileInfoDialog(w, file, string(content), func(newContent string) {
-						/*
-							err := ioutil.WriteFile(filepath.Join(currentPath, file.Name), []byte(newContent), 0644)
-							if err != nil {
-								dialog.ShowError(err, w)
-								return
-							}*/
 						indexs, blocks := bytes2Block([]byte(newContent))
-						//log.Println("Write to file:", filepath.Join(currentPath, file.Name))
-						//log.Println("Indexs:", indexs, "data:", blocks)
 						for i, _ := range indexs {
 							err := FF.Write(&afs, Handler, indexs[i], blocks[i])
 							log.Println("Err:", err)
@@ -164,7 +146,7 @@ func main() {
 				}
 			}
 		}),
-		widget.NewToolbarAction(theme.InfoIcon(), func() {
+		widget.NewButtonWithIcon("File Info", theme.InfoIcon(), func() {
 			// 查看文件属性
 			updateFileList(list, currentPathLabel)
 			if selectedFileIdx >= 0 && selectedFileIdx < len(files) {
@@ -172,8 +154,8 @@ func main() {
 				showFilePropertiesDialog(w, file)
 			}
 		}),
-		widget.NewToolbarAction(theme.CheckButtonCheckedIcon(), func() {
-			// 查看文件属性
+		widget.NewButtonWithIcon("Flush", theme.CheckButtonCheckedIcon(), func() {
+			// Flush
 			FF.Flush(&afs)
 		}),
 	)
@@ -272,7 +254,8 @@ func showCreateFileDialog(w fyne.Window, list *widget.List, currentPathLabel *wi
 				err, _ := Helper.CreateByPath(&afs, path, BlockLayer.NormalFile)
 				log.Println("Create file:", path)
 				if err != "" {
-					log.Fatal("Err:", err)
+					dialog.NewError(errors.New(err), w).Show()
+
 				}
 				updateFileList(list, currentPathLabel)
 			}
@@ -394,4 +377,12 @@ func bytes2Block(data []byte) ([]int, [][Setting.BlockSize]byte) {
 		reI = append(reI, c)
 	}
 	return reI, re
+}
+
+type Wrap struct {
+	a fyne.CanvasObject
+}
+
+func (s Wrap) ToolbarObject() fyne.CanvasObject {
+	return s.a
 }
