@@ -34,10 +34,6 @@ type SegHead struct {
 	DataBlockSummary [MaxEditBlcokN]FileIndexInfo
 } // 1 per block
 
-func (s SegHead) Len() int {
-	return s.InodeBlockN + s.InodeMapN + s.DataBlockN + 1
-}
-
 type FileIndexInfo struct {
 	InodeN int
 	Index  int
@@ -64,6 +60,9 @@ type DataBlock struct {
 	Data *[Setting.BlockSize]uint8
 } // 1 per block
 
+func (s SegHead) Len() int {
+	return s.InodeBlockN + s.InodeMapN + s.DataBlockN + 1
+}
 func (s SuperBlock) CanBeBlock() {
 }
 func (s SegHead) CanBeBlock() {

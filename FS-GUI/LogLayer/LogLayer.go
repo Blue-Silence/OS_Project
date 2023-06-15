@@ -31,13 +31,10 @@ func (L *FSLog) InitLog() {
 }
 
 func (L *FSLog) ConstructLog(inodes []BlockLayer.INode, ds []DataBlockMem) bool {
-	//debug.PrintStack()
-	//log.Println("Adding log inodes:", inodes)
 	_, _, dataBlockN, _ := L.LenInBlock()
 	if len(ds)+dataBlockN > BlockLayer.MaxEditBlcokN {
 		return false
 	}
-	//fmt.Println("Test:", len(ds)+dataBlockN)
 	for _, v := range inodes {
 		L.inodeByImap[v.InodeN/Setting.InodePerInodemapBlock] = append(L.inodeByImap[v.InodeN/Setting.InodePerInodemapBlock], v)
 	}
